@@ -1,0 +1,16 @@
+package ej4;
+
+public class Prueba
+{
+
+	public static void main(String[] args)
+	{
+		Departamento dep1 = new Departamento("Mantenimiento"), dep2 = new Departamento("Contabilidad");
+		EmpleadoTemporario empTemp1 = new EmpleadoTemporario("Julio García","Colón 5561",3209,160,80), empTemp2 = new EmpleadoTemporario("Martìn Rodriguez","Mitre 3451",3210,100,70);
+		Principiante prin1 = new Principiante("Sandra Fernandez","Córdoba 3843",1276,6,11500), prin2 = new Principiante("Luis Gómez","Formosa 2354",1544,2,10500);
+		Intermedio int1 = new Intermedio("Juan Pérez","Matheu 2343",1234,7,12000), int2 = new Intermedio("Lucas Benítez","Castelli 4563",1634,12,12000);
+		Experto exp1 = new Experto("Mara Anchorena","Luro 3489",9876,18,13000);
+		Empresa empresa = Empresa.getInstance();
+	}
+
+}

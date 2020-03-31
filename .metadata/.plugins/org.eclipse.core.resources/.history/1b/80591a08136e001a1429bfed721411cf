@@ -1,0 +1,14 @@
+package ej5;
+
+public class AutomovilManual extends Automovil
+{
+	public AutomovilManual(String patente, double velocidadMaxima)
+	{
+		super(patente, velocidadMaxima);
+	}
+	
+	public AutomovilManual(String patente)
+	{
+		super(patente);
+	}
+}

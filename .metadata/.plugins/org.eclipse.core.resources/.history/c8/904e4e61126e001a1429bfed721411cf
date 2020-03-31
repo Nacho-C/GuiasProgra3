@@ -1,0 +1,19 @@
+package ej5;
+
+public abstract class Automovil
+{
+	protected String patente;
+	protected double velocidad, velocidadMaxima;
+	protected int marcha;
+	
+	public Automovil(String patente, double velocidadMaxima)
+	{
+		this.patente = patente;
+		this.velocidadMaxima = velocidadMaxima;
+	}
+	
+	public Automovil(String patente)
+	{
+		Automovil(patente, 160);
+	}
+}

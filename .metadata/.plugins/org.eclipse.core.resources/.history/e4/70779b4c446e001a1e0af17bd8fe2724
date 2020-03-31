@@ -1,0 +1,20 @@
+package ej7;
+
+public class Defensor extends Jugador
+{
+
+	@Override
+	public double indiceDefensa()
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double indiceAtaque()
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
