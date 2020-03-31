@@ -6,7 +6,12 @@ public class Combi extends VehiculoPersonas
 	{
 		super(patente,plazas);
 	}
-	
+	/**
+	 * Author: Los Robert
+	 * <br>
+	 * *Esto hace esto xd
+	 *  
+	 */
 	public double getPrecio(int cantDias)
 	{
 		return this.getPrecioBase() * cantDias + this.getPrecioBase() * (0.02 * this.plazas);
