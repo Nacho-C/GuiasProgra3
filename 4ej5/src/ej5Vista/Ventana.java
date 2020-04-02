@@ -27,6 +27,7 @@ import ej5.ColectivoLinea;
 import ej5.Domicilio;
 import ej5.Empresa;
 import ej5.Vehiculo;
+import javax.swing.JComboBox;
 
 public class Ventana extends JFrame implements ActionListener
 {
@@ -47,7 +48,6 @@ public class Ventana extends JFrame implements ActionListener
 	private JLabel lblNewLabel_1;
 	private JTextField textField_1;
 	private JLabel lblNewLabel_2;
-	private JSpinner spinner;
 	private JLabel lblNewLabel_3;
 	private JButton btnNewButton;
 	private JLabel lblNewLabel_4;
@@ -82,6 +82,7 @@ public class Ventana extends JFrame implements ActionListener
 	private DefaultListModel<Chofer> modeloListaChof;
 	private DefaultListModel<Vehiculo> modeloListaColLin;
 	private Empresa empresa = Empresa.getInstance("Empresa");
+	private JComboBox comboBox;
 	/**
 	 * Launch the application.
 	 */
@@ -109,6 +110,10 @@ public class Ventana extends JFrame implements ActionListener
 	 */
 	public Ventana()
 	{
+		empresa.addCategoria(new Categoria("1",10000,true,false,false));
+		empresa.addCategoria(new Categoria("2",15000,true,true,false));
+		empresa.addCategoria(new Categoria("3",15000,false,false,true));
+		empresa.addCategoria(new Categoria("4",17000,true,true,true));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1208, 705);
 		this.contentPane = new JPanel();
@@ -174,9 +179,10 @@ public class Ventana extends JFrame implements ActionListener
 
 		this.lblNewLabel_2 = new JLabel("Categor\u00EDa");
 		this.Botones.add(this.lblNewLabel_2);
-
-		this.spinner = new JSpinner();
-		this.Botones.add(this.spinner);
+		
+		this.comboBox = new JComboBox(empresa.getCategorias().toArray());
+		this.comboBox.setEditable(false);
+		this.Botones.add(this.comboBox);
 
 		this.lblNewLabel_3 = new JLabel("");
 		this.Botones.add(this.lblNewLabel_3);
@@ -303,7 +309,7 @@ public class Ventana extends JFrame implements ActionListener
 			choferSelec.setVehiculoAsignado(colLinSelec);
 		else
 			if (boton == btnNewButton)
-				empresa.addChofer(new Chofer(textField.getText(), new Categoria("xd",5,true,true,false),new Domicilio(textField_1.getText(), (int) Integer.parseInt(textField_2.getText()))));
+				empresa.addChofer(new Chofer(textField.getText(), (Categoria) comboBox.getSelectedItem(), new Domicilio(textField_1.getText(), (int) Integer.parseInt(textField_2.getText()))));
 			else
 					empresa.addVehiculo(new ColectivoLinea(textField_3.getText(), (int) Integer.parseInt(textField_4.getText())));
 		this.actualizarListas();	
