@@ -5,17 +5,21 @@ public class Chofer
 	private String nombre;
 	private Categoria categoria;
 	private Vehiculo vehiculoAsignado;
-	
-	public Chofer(String nombre, Categoria categoria)
+	private Domicilio domicilio;
+
+	public Chofer(String nombre, Categoria categoria, Domicilio domicilio)
 	{
 		this.nombre = nombre;
 		this.categoria = categoria;
+		this.domicilio = domicilio;
+		this.vehiculoAsignado = null;
 	}
-	
-	public Chofer(String nombre, Categoria categoria, Vehiculo vehiculoAsignado)
+
+	public Chofer(String nombre, Categoria categoria, Domicilio domicilio, Vehiculo vehiculoAsignado)
 	{
 		this.nombre = nombre;
 		this.categoria = categoria;
+		this.domicilio = domicilio;
 		this.vehiculoAsignado = vehiculoAsignado;
 	}
 
@@ -36,14 +40,35 @@ public class Chofer
 
 	public void setVehiculoAsignado(Vehiculo vehiculoAsignado)
 	{
-		this.vehiculoAsignado = vehiculoAsignado;
+		if (vehiculoAsignado.aceptoChofer(this))
+			this.vehiculoAsignado = vehiculoAsignado;
+	}
+
+	public void desvincularVehiculo()
+	{
+		this.vehiculoAsignado = null;
 	}
 
 	public String getNombre()
 	{
 		return nombre;
 	}
-	
-	
-	
+
+	public Domicilio getDomicilio()
+	{
+		return domicilio;
+	}
+
+	public void setDomicilio(Domicilio domicilio)
+	{
+		this.domicilio = domicilio;
+	}
+
+	public String toString()
+	{
+		return "\nNombre: " + this.nombre + "\nDomicilio: " + this.domicilio + this.categoria
+				+ ((this.vehiculoAsignado != null) ? ("\nVehículo:\n" + this.vehiculoAsignado)
+						: "\nNo tiene vehículo asignado.");
+	}
+
 }
