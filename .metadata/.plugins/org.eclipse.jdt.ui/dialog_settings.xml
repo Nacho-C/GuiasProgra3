@@ -52,10 +52,10 @@
 		<item key="RemoveFinal" value="false"/>
 	</section>
 	<section name="DialogBounds_GetterSetterTreeSelectionDialog">
-		<item key="DIALOG_X_ORIGIN" value="1180"/>
-		<item key="DIALOG_Y_ORIGIN" value="150"/>
+		<item key="DIALOG_X_ORIGIN" value="838"/>
+		<item key="DIALOG_Y_ORIGIN" value="155"/>
 		<item key="DIALOG_WIDTH" value="678"/>
-		<item key="DIALOG_HEIGHT" value="889"/>
+		<item key="DIALOG_HEIGHT" value="770"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 	<section name="SourceActionDialog.constructors">
@@ -119,7 +119,7 @@
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 	<section name="javadoc">
-		<item key="javadoc_command_history" value=""/>
+		<item key="javadoc_command_history" value="C:\Program Files\Java\jdk-11.0.6\bin\javadoc.exe"/>
 		<item key="fromStandard" value="true"/>
 		<item key="docletname" value=""/>
 		<item key="docletpath" value=""/>
@@ -135,13 +135,13 @@
 		<item key="nonavbar" value="false"/>
 		<item key="openinbrowser" value="false"/>
 		<item key="source" value="11"/>
-		<item key="antpath" value="C:\Users\nacho\Desktop\Facultad\Programacion III\4ej4\javadoc.xml"/>
-		<item key="destdir" value="C:\Users\nacho\Desktop\Facultad\Programacion III\4ej4\doc"/>
+		<item key="antpath" value="C:\Users\nacho\Desktop\Facultad\Programacion III\4ej5\javadoc.xml"/>
+		<item key="destdir" value="C:\Users\nacho\Desktop\Facultad\Programacion III\4ej5\doc"/>
 		<section name="projects">
-			<section name="4ej4">
+			<section name="4ej5">
 				<item key="href" value=""/>
-				<item key="destdir" value="C:\Users\nacho\Desktop\Facultad\Programacion III\4ej4\doc"/>
-				<item key="antpath" value="C:\Users\nacho\Desktop\Facultad\Programacion III\4ej4\javadoc.xml"/>
+				<item key="destdir" value="C:\Users\nacho\Desktop\Facultad\Programacion III\4ej5\doc"/>
+				<item key="antpath" value="C:\Users\nacho\Desktop\Facultad\Programacion III\4ej5\javadoc.xml"/>
 			</section>
 		</section>
 	</section>

@@ -17,11 +17,36 @@ public class Empresa
 		this.nombre = nombre;
 	}
 
-	public Empresa getInstance(String nombre)
+	public static Empresa getInstance(String nombre)
 	{
 		if (Empresa.instance == null)
 			Empresa.instance = new Empresa(nombre);
 		return Empresa.instance;
+	}
+
+	public String getNombre()
+	{
+		return nombre;
+	}
+
+	public ArrayList<Vehiculo> getVehiculos()
+	{
+		return vehiculos;
+	}
+
+	public ArrayList<Chofer> getChoferes()
+	{
+		return choferes;
+	}
+
+	public ArrayList<Categoria> getCategorias()
+	{
+		return categorias;
+	}
+
+	public ArrayList<Acoplado> getAcoplados()
+	{
+		return acoplados;
 	}
 
 	public void addChofer(Chofer chofer)

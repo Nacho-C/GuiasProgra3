@@ -1,6 +1,6 @@
 package ej5;
 
-abstract class Vehiculo
+public abstract class Vehiculo
 {
 	private String modelo;
 	private int numInterno;
