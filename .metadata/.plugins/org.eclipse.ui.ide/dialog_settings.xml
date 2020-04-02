@@ -37,4 +37,8 @@
 		<item key="DIALOG_HEIGHT" value="434"/>
 		<item key="TOGGLE_SELECTED" value="false"/>
 	</section>
+	<section name="ResourceNavigator">
+		<item key="ResourceViewer.STORE_SORT_TYPE" value="1"/>
+		<item key="ResourceWorkingSetFilter.STORE_WORKING_SET" value="Aggregate for window 1583422503861"/>
+	</section>
 </section>
