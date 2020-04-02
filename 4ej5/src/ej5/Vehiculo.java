@@ -28,5 +28,4 @@ public abstract class Vehiculo
 	{
 		return "Número Interno: " + this.numInterno + "\nModelo: " + this.modelo;
 	}
-	//PRUEBA
 }
