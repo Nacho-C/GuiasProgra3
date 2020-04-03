@@ -1,0 +1,28 @@
+package ej7;
+
+public class Cafe extends Infusion
+{
+	private boolean amargo;
+
+	@Override
+	protected void agregarTipoInfusion()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void endulzar()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void tomar()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
