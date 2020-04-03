@@ -11,13 +11,13 @@
     <fullyQualifiedTypeName name="ej4.Empleado"/>
     <fullyQualifiedTypeName name="javax.swing.text.html.HTMLDocument.Iterator"/>
     <fullyQualifiedTypeName name="ej5.Automovil"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="ej5.ColectivoLinea"/>
     <fullyQualifiedTypeName name="ej5.Chofer"/>
     <fullyQualifiedTypeName name="ej5.Empresa"/>
     <fullyQualifiedTypeName name="ej5.Domicilio"/>
     <fullyQualifiedTypeName name="ej5.Categoria"/>
     <fullyQualifiedTypeName name="javax.swing.DefaultListModel"/>
-    <fullyQualifiedTypeName name="java.util.Iterator"/>
     <fullyQualifiedTypeName name="ej5.Vehiculo"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
 </qualifiedTypeNameHistroy>
