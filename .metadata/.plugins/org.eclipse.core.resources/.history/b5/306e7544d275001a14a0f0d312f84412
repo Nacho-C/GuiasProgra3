@@ -1,0 +1,13 @@
+package ej7;
+
+abstract public class Infusion
+{
+	
+	
+	
+	protected void calentarAgua();
+	protected void agregarTipoInfusion();
+	protected void endulzar();
+	
+	public void prepararYTomar()
+}
