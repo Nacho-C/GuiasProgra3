@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-INDEX VERSION 1.131+C:\Users\nacho\Desktop\Facultad\Programacion III\.metadata\.plugins\org.eclipse.jdt.core
-=======
-INDEX VERSION 1.131+D:\Programacion lll\Guias\GuiasProgra3\.metadata\.plugins\org.eclipse.jdt.core
-<<<<<<< HEAD
-3397630159.index
->>>>>>> d2c9c63fddc631ecdad8e773477838e388be94f3
-=======
->>>>>>> 12b9daa67119535c1f784c7b45abc32728cd49bf
