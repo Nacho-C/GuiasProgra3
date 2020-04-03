@@ -18,7 +18,7 @@ public class Sistema
 		return instance;
 	}
 	
-	public void añadir(Archivo archivo)
+	public void aÃ±adir(Archivo archivo)
 	{
 		this.archivos.add(archivo);
 	}

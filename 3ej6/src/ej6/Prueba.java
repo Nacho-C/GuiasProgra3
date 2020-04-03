@@ -37,6 +37,6 @@ public class Prueba
         c.agregarDirectorio(fotos);
         mp3.agregarDirectorio(Queen);
         mp3.agregarDirectorio(theBeatles);
-        System.out.println(c.buscaArchivo("Save me.mp3").getTamaño());
+        System.out.println(c.buscaArchivo("Save me.mp3").getTamaÃ±o());
 	}
 }

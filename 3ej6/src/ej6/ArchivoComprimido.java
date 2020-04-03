@@ -15,8 +15,8 @@ public class ArchivoComprimido extends Directorio
 		return this.tazaCompresion;
 	}
 
-	public double getTamaño()
+	public double getTamaÃ±o()
 	{
-		return super.getTamaño() * this.tazaCompresion / 100;
+		return super.getTamaÃ±o() * this.tazaCompresion / 100;
 	}
 }
