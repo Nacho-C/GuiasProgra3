@@ -7,12 +7,12 @@ public class Archivo
 	protected String nombre;
 	protected LocalDate fechaCreacion;
 	private LocalDate fechaUltMod;
-	private double tamaño;
+	private double tamaÃ±o;
 
-	public Archivo(String nombre, double tamaño)
+	public Archivo(String nombre, double tamaÃ±o)
 	{
 		this.nombre = nombre;
-		this.tamaño = tamaño;
+		this.tamaÃ±o = tamaÃ±o;
 		this.fechaUltMod = this.fechaCreacion = LocalDate.now();
 	}
 
@@ -37,9 +37,9 @@ public class Archivo
 		return fechaUltMod;
 	}
 
-	public double getTamaño()
+	public double getTamaÃ±o()
 	{
-		return tamaño;
+		return tamaÃ±o;
 	}
 
 	public void setNombre(String nuevoNombre)

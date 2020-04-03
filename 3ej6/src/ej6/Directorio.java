@@ -44,15 +44,15 @@ public class Directorio extends Archivo
 	}
 
 	@Override
-	public double getTamaño()
+	public double getTamaÃ±o()
 	{
 		double retorno = 0;
 		Iterator<Archivo> itArchivo = archivos.iterator();
 		while (itArchivo.hasNext())
-			retorno += itArchivo.next().getTamaño();
+			retorno += itArchivo.next().getTamaÃ±o();
 		Iterator<Directorio> itDirectorio = subDirectorios.iterator();
 		while (itDirectorio.hasNext())
-			retorno += itDirectorio.next().getTamaño();
+			retorno += itDirectorio.next().getTamaÃ±o();
 		return retorno;
 	}
 
