@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy 4 elements to &apos;4ej6/src/ej6&apos;&#x0D;&#x0A;- Original project: &apos;3ej3&apos;&#x0D;&#x0A;- Destination element: &apos;4ej6/src/ej6&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     ej3.CajaDeAhorro.java&#x0D;&#x0A;     ej3.CuentaCorriente.java&#x0D;&#x0A;     ej3.CuentaUniversitaria.java&#x0D;&#x0A;     ej3.CuentaBancaria.java" description="Copy compilation units" destination="=4ej6/src&lt;ej6" element1="/src&lt;ej3{CajaDeAhorro.java" element2="/src&lt;ej3{CuentaCorriente.java" element3="/src&lt;ej3{CuentaUniversitaria.java" element4="/src&lt;ej3{CuentaBancaria.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1585928430364" units="4" version="1.0"/>
-</session>
