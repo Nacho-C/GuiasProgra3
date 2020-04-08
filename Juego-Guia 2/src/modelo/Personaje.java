@@ -63,6 +63,6 @@ public class Personaje
 	@Override
 	public String toString()
 	{
-		return "Nombre: " + this.nombre + "\tVitalidad: " + this.vitalidad + "\tPosición: " + this.posicion;
+		return "Nombre: " + this.nombre + "\tVitalidad: " + this.vitalidad + "\tPosiciï¿½n: " + this.posicion;
 	}
 }
