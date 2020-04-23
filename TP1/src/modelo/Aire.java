@@ -4,7 +4,7 @@ public class Aire extends Pokemon
 {
 	public Aire(String nombre)
 	{
-		super(nombre, 1000, 40, 40);
+		super(nombre, 700, 40, 40);
 	}
 
 	@Override

@@ -4,7 +4,7 @@ public class Tierra extends Pokemon
 {
 	public Tierra(String nombre)
 	{
-		super(nombre,700,20,300);
+		super(nombre,700,20,150);
 	}
 
 	@Override

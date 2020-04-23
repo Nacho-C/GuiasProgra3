@@ -1,9 +1,9 @@
 package modelo;
 
-public abstract class Pokemon
+public abstract class Pokemon implements IClasificable
 {
 	private String nombre;
-	private long puntosXP;
+	private int puntosXP;
 	protected double escudo, vitalidad, fuerza;
 
 	public Pokemon(String nombre, double vitalidad, double fuerza, double escudo)
@@ -34,10 +34,10 @@ public abstract class Pokemon
 	{
 		return this.nombre;
 	}
-
-	public long getPuntosXP()
+	
+	public void addXP(long XP)
 	{
-		return this.puntosXP;
+		this.puntosXP += XP;
 	}
 
 	public void ataque(Pokemon otro)
@@ -61,4 +61,9 @@ public abstract class Pokemon
 	public abstract void golpeFinal(Pokemon otro);
 
 	public abstract void recibeDaño(double daño);
+	
+	public int getCategoria()
+	{
+		return this.puntosXP;
+	}
 }
