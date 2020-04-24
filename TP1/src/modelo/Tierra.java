@@ -27,4 +27,34 @@ public class Tierra extends Pokemon
 			this.escudo = 0;
 		}
 	}
+
+	@Override
+	public void recibeNiebla()
+	{
+		System.out.println("El hechizo Niebla no afecta a los Pokemon de tipo Tierra.");
+	}
+
+	@Override
+	public void recibeViento()
+	{
+		this.escudo *= 0.66;
+	}
+
+	@Override
+	public void recibeTormenta()
+	{
+		this.vitalidad *= 0.85;
+	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException
+	{
+		throw new CloneNotSupportedException("Los pokemon de tipo Tierra no pueden ser clonados.");
+	}
+
+	@Override
+	public void curar()
+	{
+		this.vitalidad = 700;
+	}
 }

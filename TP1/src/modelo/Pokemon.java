@@ -2,7 +2,7 @@ package modelo;
 
 public abstract class Pokemon implements IClasificable
 {
-	private String nombre;
+	protected String nombre;
 	private int puntosXP;
 	protected double escudo, vitalidad, fuerza;
 
@@ -43,8 +43,10 @@ public abstract class Pokemon implements IClasificable
 	public void ataque(Pokemon otro)
 	{
 		this.golpeInicial(otro);
+		System.out.println(this.nombre + " realiza un golpe inicial.");
 		this.recarga();
 		this.golpeFinal(otro);
+		System.out.println(this.nombre + " realiza un golpe final.");
 	}
 
 	public void golpeInicial(Pokemon otro)
@@ -65,5 +67,19 @@ public abstract class Pokemon implements IClasificable
 	public int getCategoria()
 	{
 		return this.puntosXP;
+	}
+	
+	public abstract void recibeNiebla();
+	
+	public abstract void recibeViento();
+	
+	public abstract void recibeTormenta();
+	
+	public abstract void curar();
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException
+	{
+			return super.clone();
 	}
 }

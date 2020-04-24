@@ -2,53 +2,108 @@ package modelo;
 
 public class Arena
 {
-	private Entrenador entrenador1, entrenador2;
-	private Pokemon pokemon1, pokemon2;
-	
+	private Entrenador entrenador1, entrenador2, ganador, perdedor;
+	private Pokemon pokemon1, pokemon2, pokemonGanador, pokemonPerdedor;
+
 	public Arena(Entrenador entrenador1, Entrenador entrenador2)
 	{
 		this.entrenador1 = entrenador1;
 		this.entrenador2 = entrenador2;
 	}
-	
-	public void ronda()
+
+	public void pelear(boolean hechizo1, boolean hechizo2)
 	{
+		ICartaHechizo carta1 = null, carta2 = null;
 		double random = Math.random(), puntaje1, puntaje2;
 		pokemon1 = entrenador1.getPokemonRandom();
 		pokemon2 = entrenador2.getPokemonRandom();
+		System.out.println("Pelean " + entrenador1.getNombre() + " con su " + pokemon1.getNombre() + " contra "
+				+ entrenador2.getNombre() + " con su " + pokemon2.getNombre() + ".");
+		if (hechizo1)
+		{
+			try
+			{
+				carta1 = entrenador1.sacarCartaRandom();
+				System.out.println(entrenador1.getNombre() + " usó su carta " + carta1 + " en el "
+						+ pokemon2.getNombre() + " enemigo.");
+				carta1.hechizar(pokemon2);
+			}
+			catch (Exception e)
+			{
+				System.out.println(e.getMessage());
+			}
+		}
+		if (hechizo2)
+		{
+			try
+			{
+				carta2 = entrenador2.sacarCartaRandom();
+				System.out.println(entrenador2.getNombre() + " usó su carta " + carta2 + " en el "
+						+ pokemon1.getNombre() + " enemigo.");
+				carta2.hechizar(pokemon1);
+			}
+			catch (Exception e)
+			{
+				System.out.println(e.getMessage());
+			}
+		}
 		if (random > 0.5)
 		{
+			System.out.println(pokemon2.getNombre() + " ataca a " + pokemon1.getNombre());
 			pokemon2.ataque(pokemon1);
-			pokemon1.ataque(pokemon2);
+			System.out.println(pokemon1.getNombre() + " contraataca a " + pokemon2.getNombre());
+			pokemon1.ataque(pokemon2);	
 		}
 		else
 		{
+			System.out.println(pokemon1.getNombre() + " ataca a " + pokemon2.getNombre());
 			pokemon1.ataque(pokemon2);
-			pokemon2.ataque(pokemon1);
+			System.out.println(pokemon2.getNombre() + " contraataca a " + pokemon1.getNombre());
+			pokemon2.ataque(pokemon1);	
 		}
 		puntaje1 = pokemon1.getVitalidad() + 2 * pokemon1.getFuerza() + 0.5 * pokemon1.getEscudo();
 		puntaje2 = pokemon2.getVitalidad() + 2 * pokemon2.getFuerza() + 0.5 * pokemon2.getEscudo();
 		if (puntaje1 > puntaje2)
-		{
-			pokemon1.addXP(3);
-			pokemon2.addXP(1);
-			entrenador1.addGanada();
-			entrenador2.addPerdida();
-		}
+			this.finalPelea(entrenador1,pokemon1,entrenador2,pokemon2,carta2);
 		else
 			if (puntaje2 > puntaje1)
-			{
-				pokemon1.addXP(1);
-				pokemon2.addXP(3);
-				entrenador2.addGanada();
-				entrenador1.addPerdida();
-			}
+				this.finalPelea(entrenador2,pokemon2,entrenador1,pokemon1,carta1);
 			else
-			{
-				pokemon1.addXP(2);
-				pokemon2.addXP(2);
-				entrenador1.addEmpatada();
-				entrenador2.addEmpatada();
-			}
+				if (entrenador1.getCategoria() <= entrenador2.getCategoria())
+					this.finalPelea(entrenador1,pokemon1,entrenador2,pokemon2,carta2);
+				else
+					this.finalPelea(entrenador2,pokemon2,entrenador1,pokemon1,carta1);
+	}
+	
+	private void finalPelea(Entrenador ganador, Pokemon pokemonGanador, Entrenador perdedor, Pokemon pokemonPerdedor, ICartaHechizo carta)
+	{
+		this.ganador = ganador;
+		this.perdedor = perdedor;
+		this.pokemonGanador = pokemonGanador;
+		this.pokemonPerdedor = pokemonPerdedor;
+		System.out.println(ganador.getNombre() + " gana.");
+		System.out.println(perdedor.getNombre() + " queda eliminado del torneo.");
+		pokemonGanador.addXP(3);
+		pokemonPerdedor.addXP(1);
+		ganador.addGanada();
+		perdedor.addPerdida();
+		ganador.ganarCreditos(perdedor.getCategoria() * 0.4);
+		if (carta != null)
+			ganador.addCarta(carta);
+		Torneo.getInstance().removeEntrenador(perdedor);
+		if (pokemonGanador.getVitalidad() <= 0)
+		{
+			ganador.removePokemon(pokemonGanador);
+			System.out.println("El " + pokemonGanador.getNombre() + " de " + ganador.getNombre() + " muere en batalla.");
+		}
+		else
+			pokemonGanador.curar();
+		System.out.println("\n******\n");
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "Ganador: " + this.ganador.getNombre() + " con su " + this.pokemonGanador.getNombre() + "\nPerdedor: " + this.perdedor.getNombre() + " con su " + this.pokemonPerdedor.getNombre();
 	}
 }

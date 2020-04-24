@@ -12,6 +12,7 @@ public class Agua extends Pokemon
 	{
 		this.fuerza *= 1.1;
 		this.vitalidad *= 1.1;
+		System.out.println(this.nombre + " recargó 10% de fuerza y 10% de vitalidad.");
 	}
 	
 	@Override
@@ -31,5 +32,35 @@ public class Agua extends Pokemon
 			this.vitalidad -= daño - this.escudo;
 			this.escudo = 0;
 		}
+	}
+
+	@Override
+	public void recibeNiebla()
+	{
+		this.fuerza *= 0.8;
+	}
+
+	@Override
+	public void recibeViento()
+	{
+		this.escudo *= 0.85;
+	}
+
+	@Override
+	public void recibeTormenta()
+	{
+		System.out.println("El hechizo Tormenta no afecta a los Pokemon de tipo Agua.");
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException
+	{
+		return super.clone();
+	}
+
+	@Override
+	public void curar()
+	{
+		this.vitalidad = 500;
 	}
 }
