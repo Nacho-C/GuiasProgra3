@@ -29,20 +29,22 @@ public class Hielo extends Pokemon
 	@Override
 	public void golpeFinal(Pokemon otro)
 	{
-		otro.recibeDaño(this.fuerza * 0.9);
+		otro.recibeDano(this.fuerza * 0.9);
+		if (this.granRecarga)
+			this.fuerza = 100;
 	}
 
 	@Override
-	public void recibeDaño(double daño)
+	public void recibeDano(double dano)
 	{
-		if (this.escudo >= daño * 0.75)
+		if (this.escudo >= dano * 0.75)
 		{
-			this.vitalidad -= daño * 0.25;
-			this.escudo -= daño * 0.75;
+			this.vitalidad -= dano * 0.25;
+			this.escudo -= dano * 0.75;
 		}
 		else
 		{
-			this.vitalidad -= daño - this.escudo;
+			this.vitalidad -= dano - this.escudo;
 			this.escudo = 0;
 		}
 	}

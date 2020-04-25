@@ -1,5 +1,15 @@
 package modelo;
 
+/**
+ * 
+ * @author Grupo 3
+ * <br>
+ * Clase Pokemon
+ * <br>
+ * Descripcion: 
+ * <br>
+ * Clase abstracta de la cual se extienden los diferentes tipos de Pokemon. Se encarga de gestionar los atributos, de la estructura del ataque y de la implementación del golpe inicial.
+ */
 public abstract class Pokemon implements IClasificable
 {
 	protected String nombre;
@@ -40,6 +50,16 @@ public abstract class Pokemon implements IClasificable
 		this.puntosXP += XP;
 	}
 
+	
+/**
+ * Descripcion: Realiza el ataque de 3 pasos genéricos, los cuales implementa cada subclase.
+ * <br>
+ * Precondicion: Recibe una variable de clase Pokemon o de sus subclases, no nula.
+ * <br>
+ * Postcondicion: Este pokemon ataca al recibido por parametro.
+ * <br>
+ * @param otro Pokemon al cual se va a realizar el ataque
+ */
 	public void ataque(Pokemon otro)
 	{
 		this.golpeInicial(otro);
@@ -51,7 +71,7 @@ public abstract class Pokemon implements IClasificable
 
 	public void golpeInicial(Pokemon otro)
 	{
-		otro.recibeDaño(this.fuerza);
+		otro.recibeDano(this.fuerza);
 		this.fuerza /= 2;
 	}
 
@@ -62,7 +82,7 @@ public abstract class Pokemon implements IClasificable
 
 	public abstract void golpeFinal(Pokemon otro);
 
-	public abstract void recibeDaño(double daño);
+	public abstract void recibeDano(double dano);
 	
 	public int getCategoria()
 	{
@@ -77,9 +97,20 @@ public abstract class Pokemon implements IClasificable
 	
 	public abstract void curar();
 	
+	/**
+	 * Descripcion: Sobreescritura del método clone() de la clase Object para hacerla pública
+	 * <br>
+	 * Postcondicion: En el caso de los pokemon de un tipo clonable (por ejemplo Agua) devuelve un clon. En el caso de los pokemon de un tipo no clonable (por ejemplo Aire) tira una excepción de tipo CloneNotSupportedException.
+	 */
 	@Override
 	public Object clone() throws CloneNotSupportedException
 	{
 			return super.clone();
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "Nombre: " + this.nombre + "\nPuntos de experiencia / Categoría: " + this.puntosXP + "\nVitalidad: " + this.vitalidad + "\nFuerza: " + this.fuerza + "\nEscudo: " + this.escudo;
 	}
 }

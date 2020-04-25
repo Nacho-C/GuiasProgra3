@@ -22,21 +22,21 @@ public class Aire extends Pokemon
 	{
 		double fallar = Math.random();
 		if (fallar > probFallar)
-			otro.recibeDaño(this.fuerza);
+			otro.recibeDano(this.fuerza);
 		else
 			System.out.println(this.getNombre() + " falló.");
 	}
 
 	@Override
-	public void recibeDaño(double daño)
+	public void recibeDano(double dano)
 	{
 		double esquivar = Math.random();
 		if (esquivar > 0.8)
-			if (this.escudo >= daño)
-				this.escudo -= daño;
+			if (this.escudo >= dano)
+				this.escudo -= dano;
 			else
 			{
-				this.vitalidad -= daño - this.escudo;
+				this.vitalidad -= dano - this.escudo;
 				this.escudo = 0;
 			}
 		else

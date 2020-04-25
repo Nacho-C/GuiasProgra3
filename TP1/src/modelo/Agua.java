@@ -18,18 +18,18 @@ public class Agua extends Pokemon
 	@Override
 	public void golpeFinal(Pokemon otro)
 	{
-		otro.recibeDaño(this.fuerza);
+		otro.recibeDano(this.fuerza);
 		this.fuerza /= 2;
 	}
 
 	@Override
-	public void recibeDaño(double daño)
+	public void recibeDano(double dano)
 	{
-		if (this.escudo >= daño)
-			this.escudo -= daño;
+		if (this.escudo >= dano)
+			this.escudo -= dano;
 		else
 		{
-			this.vitalidad -= daño - this.escudo;
+			this.vitalidad -= dano - this.escudo;
 			this.escudo = 0;
 		}
 	}

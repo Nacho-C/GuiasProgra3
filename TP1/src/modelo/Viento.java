@@ -10,7 +10,7 @@ public class Viento implements ICartaHechizo
 	@Override
 	public String toString()
 	{
-		return "Niebla";
+		return "Viento";
 	}
 	
 	@Override

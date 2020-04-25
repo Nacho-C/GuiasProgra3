@@ -10,20 +10,20 @@ public class Tierra extends Pokemon
 	@Override
 	public void golpeFinal(Pokemon otro)
 	{
-		otro.recibeDaño(this.fuerza * 3);
+		otro.recibeDano(this.fuerza * 3);
 	}
 
 	@Override
-	public void recibeDaño(double daño)
+	public void recibeDano(double dano)
 	{
-		if (this.escudo >= daño * 0.8)
+		if (this.escudo >= dano * 0.8)
 		{
-			this.vitalidad -= daño * 0.2;
-			this.escudo -= daño * 0.8;
+			this.vitalidad -= dano * 0.2;
+			this.escudo -= dano * 0.8;
 		}
 		else
 		{
-			this.vitalidad -= daño - this.escudo;
+			this.vitalidad -= dano - this.escudo;
 			this.escudo = 0;
 		}
 	}

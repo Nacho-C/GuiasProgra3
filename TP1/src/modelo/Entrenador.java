@@ -8,13 +8,13 @@ public class Entrenador implements IClasificable
 	private String nombre;
 	private ArrayList<ICartaHechizo> cartas = new ArrayList<ICartaHechizo>();
 	private ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
-	private int rondasGanadas, rondasPerdidas, rondasEmpatadas, hechizosDisponibles;
+	private int rondasGanadas, hechizosDisponibles;
 	private double creditos;
 
 	public Entrenador(String nombre)
 	{
 		this.nombre = nombre;
-		this.creditos = this.rondasGanadas = this.rondasEmpatadas = this.rondasPerdidas = 0;
+		this.creditos = this.rondasGanadas = 0;
 		this.hechizosDisponibles = Torneo.maxHechizos;
 	}
 
@@ -94,19 +94,14 @@ public class Entrenador implements IClasificable
 		return retorno;
 	}
 
+	public int getGanadas()
+	{
+		return this.rondasGanadas;
+	}
+	
 	public void addGanada()
 	{
 		this.rondasGanadas++;
-	}
-
-	public void addEmpatada()
-	{
-		this.rondasEmpatadas++;
-	}
-
-	public void addPerdida()
-	{
-		this.rondasPerdidas++;
 	}
 
 	public int getCategoria()

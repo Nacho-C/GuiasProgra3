@@ -77,19 +77,22 @@ public class Arena
 	
 	private void finalPelea(Entrenador ganador, Pokemon pokemonGanador, Entrenador perdedor, Pokemon pokemonPerdedor, ICartaHechizo carta)
 	{
+		ganador.addGanada();
 		this.ganador = ganador;
 		this.perdedor = perdedor;
 		this.pokemonGanador = pokemonGanador;
 		this.pokemonPerdedor = pokemonPerdedor;
 		System.out.println(ganador.getNombre() + " gana.");
-		System.out.println(perdedor.getNombre() + " queda eliminado del torneo.");
+		System.out.println(perdedor.getNombre() + " queda eliminado del torneo con " + perdedor.getGanadas() + " rondas ganadas.");
 		pokemonGanador.addXP(3);
 		pokemonPerdedor.addXP(1);
-		ganador.addGanada();
-		perdedor.addPerdida();
 		ganador.ganarCreditos(perdedor.getCategoria() * 0.4);
+		System.out.println(ganador.getNombre() + " tiene " + ganador.getCreditos() + " créditos.");
 		if (carta != null)
+		{
+			System.out.println(ganador.getNombre() + " recibe la carta " + carta + " usada por " + perdedor.getNombre() + ".");
 			ganador.addCarta(carta);
+		}
 		Torneo.getInstance().removeEntrenador(perdedor);
 		if (pokemonGanador.getVitalidad() <= 0)
 		{

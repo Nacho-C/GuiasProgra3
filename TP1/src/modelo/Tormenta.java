@@ -10,7 +10,7 @@ public class Tormenta implements ICartaHechizo
 	@Override
 	public String toString()
 	{
-		return "Niebla";
+		return "Tormenta";
 	}
 	
 	@Override

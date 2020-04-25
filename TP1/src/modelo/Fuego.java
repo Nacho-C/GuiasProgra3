@@ -18,21 +18,21 @@ public class Fuego extends Pokemon
 	@Override
 	public void golpeFinal(Pokemon otro)
 	{
-		otro.recibeDaño(this.fuerza * 1.25);
+		otro.recibeDano(this.fuerza * 1.25);
 		this.fuerza = 0;
 	}
 
 	@Override
-	public void recibeDaño(double daño)
+	public void recibeDano(double dano)
 	{
-		if (this.escudo >= daño / 2)
+		if (this.escudo >= dano / 2)
 		{
-			this.vitalidad -= daño / 2;
-			this.escudo -= daño / 2;
+			this.vitalidad -= dano / 2;
+			this.escudo -= dano / 2;
 		}
 		else
 		{
-			this.vitalidad -= daño - this.escudo;
+			this.vitalidad -= dano - this.escudo;
 			this.escudo = 0;
 		}
 	}

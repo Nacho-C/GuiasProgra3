@@ -7,7 +7,7 @@ public class Torneo
 {
 	private static Torneo instance = null;
 
-	public final static int numeroEntrenadores = 4, maxHechizos = 3;
+	public final static int numeroEntrenadores = 16, maxHechizos = 1;
 
 	private ArrayList<Arena> arenas = new ArrayList<Arena>();
 	
@@ -41,7 +41,7 @@ public class Torneo
 		boolean bool1 = false, bool2 = false;
 		Entrenador entrenador1 = null, entrenador2 = null;
 		if (entrenadores.size() != Torneo.numeroEntrenadores)
-			System.out.println("No se puede comenzar el torneo porque no alcanzan los entrenadores.");
+			System.out.println("No se puede comenzar el torneo porque debe haber exactamente " + Torneo.numeroEntrenadores + " entrenadores.");
 		else
 		{
 			while (entrenadores.size() > 1)
@@ -52,6 +52,7 @@ public class Torneo
 					entrenador1 = this.entrenadores.get((int) random);
 					if (!entrenador1.tienePokemones())
 					{
+						System.out.println(entrenador1.getNombre() + " queda eliminado del torneo por no tener pokemones, con " + entrenador1.getGanadas() + " rondas ganadas.\n");
 						entrenadores.remove(entrenador1);
 						entrenador1 = null;
 					}
@@ -64,6 +65,7 @@ public class Torneo
 					{
 						if (!entrenador2.tienePokemones())
 						{
+							System.out.println(entrenador2.getNombre() + " queda eliminado del torneo por no tener pokemones, con " + entrenador2.getGanadas() + " rondas ganadas.\n");
 							entrenadores.remove(entrenador2);
 							entrenador2 = null;
 						}
@@ -81,8 +83,7 @@ public class Torneo
 					entrenador1 = entrenador2 = null;
 				}
 			}
-			System.out.println("El ganador del torneo es " + entrenadores.get(0).getNombre() + ".");
-			
+			System.out.println("El ganador del torneo es " + entrenadores.get(0).getNombre() + ", con " +  entrenadores.get(0).getGanadas() + " rondas ganadas.");
 		}
 	}
 	

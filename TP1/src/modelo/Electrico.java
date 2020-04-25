@@ -15,24 +15,24 @@ public class Electrico extends Pokemon
 		double critico = Math.random();
 		if (critico < probCritico)
 		{
-			otro.recibeDaño(this.fuerza * 2);
+			otro.recibeDano(this.fuerza * 2);
 			System.out.println(this.getNombre() + " realizó un ataque crítico.");
 		}
 		else
-			otro.recibeDaño(this.fuerza);
+			otro.recibeDano(this.fuerza);
 	}
 
 	@Override
-	public void recibeDaño(double daño)
+	public void recibeDano(double dano)
 	{
-		if (this.escudo >= daño * 0.1)
+		if (this.escudo >= dano * 0.1)
 		{
-			this.vitalidad -= daño * 0.9;
-			this.escudo -= daño * 0.1;
+			this.vitalidad -= dano * 0.9;
+			this.escudo -= dano * 0.1;
 		}
 		else
 		{
-			this.vitalidad -= daño - this.escudo;
+			this.vitalidad -= dano - this.escudo;
 			this.escudo = 0;
 		}
 	}
