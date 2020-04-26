@@ -79,6 +79,29 @@ public class Prueba
         ent11.addCarta(new Niebla());
         ent12.addCarta(new Viento());
         
+        System.out.println("Se intenta clonar el entrenador " + ent1.getNombre() + " en la posición 15.");
+        try
+		{
+			ent15 = (Entrenador) ent1.clone();
+			System.out.println("La clonación se realizó correctamente.\nNombre del entrenador en la posición 15: " + ent15.getNombre());
+		}
+		catch (CloneNotSupportedException e)
+		{
+			System.out.println("Falló la clonación.\n" + e.getMessage() + "\nNombre del entrenador en la posición 15: " + ent15.getNombre());
+		}
+        System.out.println("\n*****\n");
+        System.out.println("Se intenta clonar el entrenador " + ent8.getNombre() + " en la posición 16.");
+        try
+		{
+			ent16 = (Entrenador) ent8.clone();
+			System.out.println("La clonación se realizó correctamente.\nNombre del entrenador en la posición 16: " + ent16.getNombre());
+		}
+		catch (CloneNotSupportedException e)
+		{
+			System.out.println("Falló la clonación.\n" + e.getMessage() + "\nNombre del entrenador en la posición 16: " + ent16.getNombre());
+		}
+        System.out.println("\n*****\n");
+        
 		torneo.addEntrenador(ent1);
         torneo.addEntrenador(ent2);
         torneo.addEntrenador(ent3);
