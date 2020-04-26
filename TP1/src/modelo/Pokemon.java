@@ -1,14 +1,10 @@
 package modelo;
-
 /**
- * 
- * @author Grupo 3
+ * @author Grupo 3.
  * <br>
- * Clase Pokemon
+ * Clase Pokemon.
  * <br>
- * Descripcion: 
- * <br>
- * Clase abstracta de la cual se extienden los diferentes tipos de Pokemon. Se encarga de gestionar los atributos, de la estructura del ataque y de la implementación del golpe inicial.
+ * Descripcion: Clase abstracta que implementa la interfaz clasificabla. De esta clase se extienden los diferentes tipos de Pokemon. Se encarga de gestionar los atributos, de la estructura del ataque y de la implementación del golpe inicial.<br>
  */
 public abstract class Pokemon implements IClasificable
 {
@@ -49,17 +45,21 @@ public abstract class Pokemon implements IClasificable
 	{
 		this.puntosXP += XP;
 	}
-
 	
-/**
- * Descripcion: Realiza el ataque de 3 pasos genéricos, los cuales implementa cada subclase.
- * <br>
- * Precondicion: Recibe una variable de clase Pokemon o de sus subclases, no nula.
- * <br>
- * Postcondicion: Este pokemon ataca al recibido por parametro.
- * <br>
- * @param otro Pokemon al cual se va a realizar el ataque
- */
+	public int getCategoria()
+	{
+		return this.puntosXP;
+	}
+
+	/**
+	 * Descripcion: Realiza el ataque de 3 pasos genéricos, los cuales implementa cada subclase.
+	 * <br>
+	 * <b>Pre: Recibe una variable de clase Pokemon o de sus subclases, no nula.
+	 * <br>
+	 * <b>Post: Este pokemon ataca al recibido por parametro.
+	 * <br>
+	 * @param otro Pokemon al cual se le va a realizar el ataque
+	 */
 	public void ataque(Pokemon otro)
 	{
 		this.golpeInicial(otro);
@@ -68,39 +68,67 @@ public abstract class Pokemon implements IClasificable
 		this.golpeFinal(otro);
 		System.out.println(this.nombre + " realiza un golpe final.");
 	}
-
+	
+	/**
+	 * Descripcion: El Pokemon realiza el golpe inicial, que es generico para todos los tipos.
+	 * <br>
+	 * @param otro Pokemon que recibira el danio.
+	 */
 	public void golpeInicial(Pokemon otro)
 	{
 		otro.recibeDano(this.fuerza);
 		this.fuerza /= 2;
 	}
-
+	
+	/**
+	 * Descripcion: Metodo generico que representa a los Pokemones que no recargan. Los que si lo hacen, sobreescriben este metodo en las subclases.<br>
+	 */
 	public void recarga()
 	{
 		System.out.println(this.nombre + " no recarga.");
 	}
-
+	
+	/**
+	 * Descripcion: Pokemon realiza el golpe final, donde cada subclase implementa su forma de hacerlo.
+	 * < br>
+	 * @param otro Pokemon que recibira el golpe final.
+	 */
 	public abstract void golpeFinal(Pokemon otro);
+	
+	/**
+	 * Descripcion: Pokemon recibe danio. Cada subclase implementa la forma de tratar ese danio
+	 * <br>
+	 * @param dano Valor que recibe el Pokemon como danio, de golpe inicial o golpe final.
+	 */
 
 	public abstract void recibeDano(double dano);
 	
-	public int getCategoria()
-	{
-		return this.puntosXP;
-	}
-	
+	/**
+	 * Descripcion: Metodo que implementan las subclases para actuar frente a carta Niebla proveniente del adversario.<br>
+	 */
 	public abstract void recibeNiebla();
 	
+	/**
+	 * Descripcion: Metodo que implementan las subclases para actuar frente a carta Viento proveniente del adversario.<br>
+	 */
 	public abstract void recibeViento();
 	
+	/**
+	 * Descripcion: Metodo que implementan las subclases para actuar frente a carta Tormenta proveniente del adversario.<br>
+	 */
 	public abstract void recibeTormenta();
 	
+	/**
+	 * Descripcion: Metodo que cura al Pokemon ganador de la pelea.<br>
+	 */
 	public abstract void curar();
 	
 	/**
 	 * Descripcion: Sobreescritura del método clone() de la clase Object para hacerla pública
 	 * <br>
-	 * Postcondicion: En el caso de los pokemon de un tipo clonable (por ejemplo Agua) devuelve un clon. En el caso de los pokemon de un tipo no clonable (por ejemplo Aire) tira una excepción de tipo CloneNotSupportedException.
+	 * <b>Post: Se clonará el Pokemon solicitado.
+	 * <br>
+	 * @throws CloneNotSupportedException Si se solicita clonar un Pokemon que no es clonable (tipo Aire o Tierra), se lanza una excepcion.
 	 */
 	@Override
 	public Object clone() throws CloneNotSupportedException

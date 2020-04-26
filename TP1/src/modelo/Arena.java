@@ -1,7 +1,27 @@
 package modelo;
+/**
+ * @author Grupo 3.
+ * <br>
+ * Clase Arena.
+ * <br>
+ * Descripcion: Clase que simula una ronda del Torneo, la cual pelean dos Entrenadores con sus respectivos Pokemones.<br>
+ */
 
 public class Arena
 {
+	/**
+	 * entrenador1 entrenador2 Entrenadores que presentaran un Pokemon en la arena.
+	 * <br>
+	 * pokemon1 pokemon2 Pokemones que se enfrentaran en la arena.
+	 * <br>
+	 * pokemonGanador Pokemon que resulto victorioso.
+	 * <br>
+	 * pokemonPerdedor Pokemon que resulto derrotado.
+	 * <br>
+	 * ganador Entrenador que gano con su respectivo pokemonGanador.
+	 * <br>
+	 * perdedor Entrenador que perdio con su respectivo pokemonPerdedor.<br>
+	 */
 	private Entrenador entrenador1, entrenador2, ganador, perdedor;
 	private Pokemon pokemon1, pokemon2, pokemonGanador, pokemonPerdedor;
 
@@ -10,7 +30,18 @@ public class Arena
 		this.entrenador1 = entrenador1;
 		this.entrenador2 = entrenador2;
 	}
-
+	
+	/**
+	 * Descripcion: Metodo donde combaten pokemon1 y pokemon2 de sus respectivos Entrenadores.
+	 * <br>
+	 * @param hechizo1 boolean que determina si el Entrenador1 utiliza carta hechizo.
+	 * <br>
+	 * @param hechizo2 boolean que determina si el Entrenador2 utiliza carta hechizo.
+	 * <br>
+	 * <b>Pre: Ambos Entrenadores tienen Pokemones disponibles para combatir.
+	 * <br>
+	 * <b>Post: Resulta ganador el Entrenador con el Pokemon que obtenga el mayor puntaje.<br>
+	 */
 	public void pelear(boolean hechizo1, boolean hechizo2)
 	{
 		ICartaHechizo carta1 = null, carta2 = null;
@@ -75,6 +106,11 @@ public class Arena
 					this.finalPelea(entrenador2,pokemon2,entrenador1,pokemon1,carta1);
 	}
 	
+	/**
+	 * Descripcion: Metodo que actualiza las estadisticas del ganador y del perdedor. El perdedor queda eliminado del torneo, y el ganador sigue. El pokemon ganador, si no murio en batalla, es curado a sus estadisticas base.
+	 * <br>
+	 * @param carta Si el perdedor utilizo una carta, el ganador la obtiene como premio.
+	 */
 	private void finalPelea(Entrenador ganador, Pokemon pokemonGanador, Entrenador perdedor, Pokemon pokemonPerdedor, ICartaHechizo carta)
 	{
 		ganador.addGanada();

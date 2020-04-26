@@ -42,7 +42,6 @@ public class Prueba
         ent10.addPokemon(new Aire("Aire"));
         ent11.addPokemon(new Hielo("HieloSuperRecarga",true));
         ent12.addPokemon(new Fuego("Fuego"));
-        
         ent1.addCarta(new Viento());
         ent1.addCarta(new Tormenta());
         ent1.addCarta(new Niebla());
@@ -87,5 +86,7 @@ public class Prueba
         
 		torneo.comenzarTorneo();
 		torneo.reporteGeneral();
+		ent12.mostrarCartas();
+		ent12.mostrarPokemones();
 	}
 }

@@ -6,7 +6,7 @@ public class Aire extends Pokemon
 
 	public Aire(String nombre)
 	{
-		super(nombre, 700, 40, 40);
+		super(nombre, 500, 40, 40);
 	}
 
 	@Override
@@ -70,6 +70,6 @@ public class Aire extends Pokemon
 	@Override
 	public void curar()
 	{
-		this.vitalidad = 700;
+		this.vitalidad = 500;
 	}
 }

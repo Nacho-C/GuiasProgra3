@@ -1,4 +1,11 @@
 package modelo;
+/**
+ * @author Grupo 3.
+ * <br>
+ * Clase Tormenta.
+ * <br>
+ * Descripcion: Clase que implementa la Interfaz ICartaHechizo, y que es utilizada por un Entrenador para debilitar al Pokemon enemigo.
+ */
 
 public class Tormenta implements ICartaHechizo
 {

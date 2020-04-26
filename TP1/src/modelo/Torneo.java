@@ -3,8 +3,24 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * @author Grupo 3.
+ * <br>
+ * Clase Torneo.
+ * <br>
+ * Descripcion: Clase que emplea Patron Singleton y encargada de gestionar los Entrenadores y las rondas.
+ */
 public class Torneo
 {
+	/**
+	 * numeroEntrenadores Numero de Entrenadores que representa la cantidad de participantes del Torneo.
+	 * <br>
+	 * maxHechizos Numero que representa la cantidad maxima de hechizos utilizables por los Entrenadores en el Torneo.
+	 * <br>
+	 * arenas ArrayList que contiene todas las rondas, para un posterior informe general.
+	 * <br>
+	 * entrenadores ArrayList que contiene todos los entrenadores participantes del Torneo.<br>
+	 */
 	private static Torneo instance = null;
 
 	public final static int numeroEntrenadores = 16, maxHechizos = 1;
@@ -16,7 +32,12 @@ public class Torneo
 	private Torneo()
 	{
 	}
-
+	
+	/**
+	 * Descripcion: Metodo para obtener la instance del Torneo. Necesario para operar con sus atributos.
+	 * <br>
+	 * @return Clase Torneo.<br>
+	 */
 	public static Torneo getInstance()
 	{
 		if (Torneo.instance == null)
@@ -33,7 +54,11 @@ public class Torneo
 	{
 		this.entrenadores.remove(entrenador);
 	}
-
+	/**
+	 * Descripcion: Metodo que comienza con el Torneo. Si la cantidad de Entrenadores en el ArrayList de entrenadores no es igual al numeroEntrenadores, no habrá rondas.
+	 * <br>
+	 * <b>Post: Un entrenador gana el Torneo.<br>
+	 */
 	public void comenzarTorneo()
 	{
 		double random = 0;
@@ -86,6 +111,9 @@ public class Torneo
 			System.out.println("El ganador del torneo es " + entrenadores.get(0).getNombre() + ", con " +  entrenadores.get(0).getGanadas() + " rondas ganadas.");
 		}
 	}
+	/**
+	 * Descripcion: Metodo que realiza un listado final de todas las arenas al finalizar el Torneo.
+	 */
 	
 	public void reporteGeneral()
 	{
