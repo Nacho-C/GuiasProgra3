@@ -38,9 +38,9 @@ public class Arena
 	 * <br>
 	 * @param hechizo2 boolean que determina si el Entrenador2 utiliza carta hechizo.
 	 * <br>
-	 * <b>Pre: Ambos Entrenadores tienen Pokemones disponibles para combatir.
+	 * <b>Pre:</b> Ambos Entrenadores tienen Pokemones disponibles para combatir.
 	 * <br>
-	 * <b>Post: Resulta ganador el Entrenador con el Pokemon que obtenga el mayor puntaje.<br>
+	 * <b>Post:</b> Resulta ganador el Entrenador con el Pokemon que obtenga el mayor puntaje.<br>
 	 */
 	public void pelear(boolean hechizo1, boolean hechizo2)
 	{

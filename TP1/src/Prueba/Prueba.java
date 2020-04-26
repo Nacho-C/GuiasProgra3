@@ -1,4 +1,16 @@
-package modelo;
+package Prueba;
+
+import modelo.Agua;
+import modelo.Aire;
+import modelo.Electrico;
+import modelo.Entrenador;
+import modelo.Fuego;
+import modelo.Hielo;
+import modelo.Niebla;
+import modelo.Tierra;
+import modelo.Tormenta;
+import modelo.Torneo;
+import modelo.Viento;
 
 public class Prueba
 {
@@ -86,7 +98,6 @@ public class Prueba
         
 		torneo.comenzarTorneo();
 		torneo.reporteGeneral();
-		ent12.mostrarCartas();
-		ent12.mostrarPokemones();
+		torneo.clasificaciones();
 	}
 }

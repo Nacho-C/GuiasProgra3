@@ -4,10 +4,10 @@ package modelo;
  * <br>
  * Clase Viento.
  * <br>
- * Descripcion: Clase que implementa la Interfaz ICartaHechizo, y que es utilizada por un Entrenador para debilitar al Pokemon enemigo.
+ * Descripcion: Clase que implementa las Interfaces ICartaHechizo y Cloneable, y que es utilizada por un Entrenador para debilitar al Pokemon enemigo.
  */
 
-public class Viento implements ICartaHechizo
+public class Viento implements ICartaHechizo, Cloneable
 {
 	public void hechizar(Pokemon pokemon)
 	{

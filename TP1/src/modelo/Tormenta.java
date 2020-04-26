@@ -4,10 +4,10 @@ package modelo;
  * <br>
  * Clase Tormenta.
  * <br>
- * Descripcion: Clase que implementa la Interfaz ICartaHechizo, y que es utilizada por un Entrenador para debilitar al Pokemon enemigo.
+ * Descripcion: Clase que implementa las Interfaces ICartaHechizo y Cloneable, y que es utilizada por un Entrenador para debilitar al Pokemon enemigo.
  */
 
-public class Tormenta implements ICartaHechizo
+public class Tormenta implements ICartaHechizo, Cloneable
 {
 	public void hechizar(Pokemon pokemon)
 	{

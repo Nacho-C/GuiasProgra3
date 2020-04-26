@@ -9,6 +9,9 @@ public class Electrico extends Pokemon
 		super(nombre, 600, 80, 50);
 	}
 
+	/**
+	 * Descripcion: Golpe final de los pokemon de tipo Electrico. Tiene una probabilidad de dar un critico dada por el atributo probCritico.<br>
+	 */
 	@Override
 	public void golpeFinal(Pokemon otro)
 	{

@@ -17,6 +17,9 @@ public class Aire extends Pokemon
 		System.out.println(this.nombre + " recargó 125% de fuerza y 100% de vitalidad.");
 	}
 
+	/**
+	 * Descripcion: Golpe final de los pokemon de tipo Aire. Tiene una probabilidad de fallar dada por el atributo probFallar.<br>
+	 */
 	@Override
 	public void golpeFinal(Pokemon otro)
 	{

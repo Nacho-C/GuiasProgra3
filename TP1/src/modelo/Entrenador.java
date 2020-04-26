@@ -7,10 +7,10 @@ import java.util.Iterator;
  * <br>
  * Clase Entrenador
  * <br>
- * Descripcion: Clase que implementa la interfaz clasificable, y que contiene diferentes conjuntos de Pokemones y cartas.<br>
+ * Descripcion: Clase que implementa las interfaces IClasificable y Cloneable, y que contiene diferentes conjuntos de Pokemones y cartas.<br>
  */
 
-public class Entrenador implements IClasificable
+public class Entrenador implements IClasificable, Cloneable
 {
 	/**
 	 * cartas ArrayList que almacena todas las cartas del Entrenador.
@@ -97,9 +97,9 @@ public class Entrenador implements IClasificable
 	/**
 	 * Descripcion: Metodo que obtiene un Pokemon de manera aleatoria entre los disponibles del ArrayList pokemones.
 	 * <br>
-	 * <b>Pre: El entrenador tiene que tener Pokemones en su ArrayList.
+	 * <b>Pre:</b> El entrenador tiene que tener Pokemones en su ArrayList.
 	 * <br>
-	 * <b>Post: Se devuelve un Pokemon del arrayList.
+	 * <b>Post:</b> Se devuelve un Pokemon del arrayList.
 	 * <br>
 	 * @return Objeto Pokemon.<br>
 	 */
@@ -112,7 +112,7 @@ public class Entrenador implements IClasificable
 	/**
 	 * Descripcion: Metodo que obtiene una carta de manera aleatoria entre las disponibles del ArrayList cartas. 
 	 * <br>
-	 * <b>Post: Se devuelve una carta del arrayList
+	 * <b>Post:</b> Se devuelve una carta del arrayList
 	 * @return Interfaz ICartaHechizo.
 	 * <br>
 	 * @throws Exception Se lanzan dos tipos de excepciones, cuando ya alcanzó el limite de hechizos por torneo (LimiteHechizosException) o cuando no tiene cartas en el ArrayList cartas (NoTieneCartasException).<br>
@@ -166,11 +166,6 @@ public class Entrenador implements IClasificable
 	public void ganarCreditos(double creditos)
 	{
 		this.creditos += creditos;
-	}
-
-	public void perderCreditos(double creditos)
-	{
-		this.creditos -= creditos;
 	}
 	
 	/**

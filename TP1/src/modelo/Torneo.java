@@ -27,7 +27,7 @@ public class Torneo
 
 	private ArrayList<Arena> arenas = new ArrayList<Arena>();
 	
-	private ArrayList<Entrenador> entrenadores = new ArrayList<Entrenador>();
+	private ArrayList<Entrenador> entrenadores = new ArrayList<Entrenador>(), entrenadoresClon;
 
 	private Torneo()
 	{
@@ -57,7 +57,7 @@ public class Torneo
 	/**
 	 * Descripcion: Metodo que comienza con el Torneo. Si la cantidad de Entrenadores en el ArrayList de entrenadores no es igual al numeroEntrenadores, no habrá rondas.
 	 * <br>
-	 * <b>Post: Un entrenador gana el Torneo.<br>
+	 * <b>Post:</b> Un entrenador gana el Torneo.<br>
 	 */
 	public void comenzarTorneo()
 	{
@@ -69,6 +69,7 @@ public class Torneo
 			System.out.println("No se puede comenzar el torneo porque debe haber exactamente " + Torneo.numeroEntrenadores + " entrenadores.");
 		else
 		{
+			entrenadoresClon = (ArrayList<Entrenador>) entrenadores.clone(); //Se hace una clonacion no profunda del arreglo de entrenadores para no perder la referencia a ellos
 			while (entrenadores.size() > 1)
 			{
 				while (entrenadores.size() > 1 && entrenador1 == null)
@@ -122,5 +123,17 @@ public class Torneo
 		System.out.println("\n*****\nReporte general:\n");
 		while (itArenas.hasNext())
 			System.out.println("Ronda " + i++ +":\n" + itArenas.next() + "\n\n*****\n");
+	}
+	
+	public void clasificaciones()
+	{
+		Iterator<Entrenador> itEntrenadoresClon = entrenadoresClon.iterator();
+		System.out.println("Clasificación de los entrenadores:\n");
+		Entrenador aux = null;
+		while (itEntrenadoresClon.hasNext())
+		{
+			aux = itEntrenadoresClon.next();
+			System.out.println(aux.getNombre() + ": " + aux.getCategoria() + "\n");
+		}
 	}
 }

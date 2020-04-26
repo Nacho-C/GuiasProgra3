@@ -4,9 +4,9 @@ package modelo;
  * <br>
  * Clase Pokemon.
  * <br>
- * Descripcion: Clase abstracta que implementa la interfaz clasificabla. De esta clase se extienden los diferentes tipos de Pokemon. Se encarga de gestionar los atributos, de la estructura del ataque y de la implementación del golpe inicial.<br>
+ * Descripcion: Clase abstracta que implementa las interfaces IClasificable y Cloneable. De esta clase se extienden los diferentes tipos de Pokemon. Se encarga de gestionar los atributos, de la estructura del ataque y de la implementacion del golpe inicial.<br>
  */
-public abstract class Pokemon implements IClasificable
+public abstract class Pokemon implements IClasificable, Cloneable
 {
 	protected String nombre;
 	private int puntosXP;
@@ -52,11 +52,11 @@ public abstract class Pokemon implements IClasificable
 	}
 
 	/**
-	 * Descripcion: Realiza el ataque de 3 pasos genéricos, los cuales implementa cada subclase.
+	 * Descripcion: Realiza el ataque de 3 pasos genericos, los cuales implementa cada subclase.
 	 * <br>
-	 * <b>Pre: Recibe una variable de clase Pokemon o de sus subclases, no nula.
+	 * <b>Pre:</b> Recibe una variable de clase Pokemon o de sus subclases, no nula.
 	 * <br>
-	 * <b>Post: Este pokemon ataca al recibido por parametro.
+	 * <b>Post:</b> Este pokemon ataca al recibido por parametro.
 	 * <br>
 	 * @param otro Pokemon al cual se le va a realizar el ataque
 	 */
@@ -90,8 +90,8 @@ public abstract class Pokemon implements IClasificable
 	
 	/**
 	 * Descripcion: Pokemon realiza el golpe final, donde cada subclase implementa su forma de hacerlo.
-	 * < br>
-	 * @param otro Pokemon que recibira el golpe final.
+	 * <br>
+	 * @param otro Pokemon que recibira el golpe final.<br>
 	 */
 	public abstract void golpeFinal(Pokemon otro);
 	
@@ -124,9 +124,9 @@ public abstract class Pokemon implements IClasificable
 	public abstract void curar();
 	
 	/**
-	 * Descripcion: Sobreescritura del método clone() de la clase Object para hacerla pública
+	 * Descripcion: Sobreescritura del metodo clone() de la clase Object para hacerlo publico
 	 * <br>
-	 * <b>Post: Se clonará el Pokemon solicitado.
+	 * <b>Post:</b> Se clonara el Pokemon solicitado.
 	 * <br>
 	 * @throws CloneNotSupportedException Si se solicita clonar un Pokemon que no es clonable (tipo Aire o Tierra), se lanza una excepcion.
 	 */
