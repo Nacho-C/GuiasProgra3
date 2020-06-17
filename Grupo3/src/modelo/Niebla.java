@@ -7,7 +7,7 @@ package modelo;
  * Descripcion: Clase que implementa las Interfaces ICartaHechizo y Cloneable, y que es utilizada por un Entrenador para debilitar al Pokemon enemigo.
  */
 
-public class Niebla implements ICartaHechizo, Cloneable
+public class Niebla extends CartaHechizo implements Cloneable
 {
 	public void hechizar(Pokemon pokemon)
 	{
@@ -18,11 +18,5 @@ public class Niebla implements ICartaHechizo, Cloneable
 	public String toString()
 	{
 		return "Niebla";
-	}
-	
-	@Override
-	public Object clone() throws CloneNotSupportedException
-	{
-			return super.clone();
 	}
 }

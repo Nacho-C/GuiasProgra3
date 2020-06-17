@@ -44,7 +44,7 @@ public class Arena
 	 */
 	public void pelear(boolean hechizo1, boolean hechizo2)
 	{
-		ICartaHechizo carta1 = null, carta2 = null;
+		CartaHechizo carta1 = null, carta2 = null;
 		double random = Math.random(), puntaje1, puntaje2;
 		pokemon1 = entrenador1.getPokemonRandom();
 		pokemon2 = entrenador2.getPokemonRandom();
@@ -111,7 +111,7 @@ public class Arena
 	 * <br>
 	 * @param carta Si el perdedor utilizo una carta, el ganador la obtiene como premio.
 	 */
-	private void finalPelea(Entrenador ganador, Pokemon pokemonGanador, Entrenador perdedor, Pokemon pokemonPerdedor, ICartaHechizo carta)
+	private void finalPelea(Entrenador ganador, Pokemon pokemonGanador, Entrenador perdedor, Pokemon pokemonPerdedor, CartaHechizo carta)
 	{
 		ganador.addGanada();
 		this.ganador = ganador;

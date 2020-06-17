@@ -53,9 +53,17 @@ public class Agua extends Pokemon
 	}
 
 	@Override
-	public Object clone() throws CloneNotSupportedException
+	public Object clone()
 	{
-		return super.clone();
+		try
+		{
+			return super.clone();
+		}
+		catch (CloneNotSupportedException e)
+		{
+			//Nunca se ejecuta ya que el Pokemon siempre es clonable
+			return null;
+		}
 	}
 
 	@Override

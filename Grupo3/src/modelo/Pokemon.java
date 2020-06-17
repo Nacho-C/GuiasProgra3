@@ -6,7 +6,7 @@ package modelo;
  * <br>
  * Descripcion: Clase abstracta que implementa las interfaces IClasificable y Cloneable. De esta clase se extienden los diferentes tipos de Pokemon. Se encarga de gestionar los atributos, de la estructura del ataque y de la implementacion del golpe inicial.<br>
  */
-public abstract class Pokemon implements IClasificable, Cloneable
+public abstract class Pokemon implements IClasificable, Cloneable, IHechizable
 {
 	protected String nombre;
 	private int puntosXP;
@@ -102,21 +102,6 @@ public abstract class Pokemon implements IClasificable, Cloneable
 	 */
 
 	public abstract void recibeDano(double dano);
-	
-	/**
-	 * Descripcion: Metodo que implementan las subclases para actuar frente a carta Niebla proveniente del adversario.<br>
-	 */
-	public abstract void recibeNiebla();
-	
-	/**
-	 * Descripcion: Metodo que implementan las subclases para actuar frente a carta Viento proveniente del adversario.<br>
-	 */
-	public abstract void recibeViento();
-	
-	/**
-	 * Descripcion: Metodo que implementan las subclases para actuar frente a carta Tormenta proveniente del adversario.<br>
-	 */
-	public abstract void recibeTormenta();
 	
 	/**
 	 * Descripcion: Metodo que cura al Pokemon ganador de la pelea.<br>

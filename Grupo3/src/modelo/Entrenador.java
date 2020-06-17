@@ -25,7 +25,7 @@ public class Entrenador implements IClasificable, Cloneable
 	 * <br>
 	 */
 	private String nombre;
-	private ArrayList<ICartaHechizo> cartas = new ArrayList<ICartaHechizo>();
+	private ArrayList<CartaHechizo> cartas = new ArrayList<CartaHechizo>();
 	private ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
 	private int rondasGanadas, hechizosDisponibles;
 	private double creditos;
@@ -52,12 +52,12 @@ public class Entrenador implements IClasificable, Cloneable
 		pokemones.remove(pokemon);
 	}
 
-	public void addCarta(ICartaHechizo carta)
+	public void addCarta(CartaHechizo carta)
 	{
 		cartas.add(carta);
 	}
 
-	public void removeCarta(ICartaHechizo carta)
+	public void removeCarta(CartaHechizo carta)
 	{
 		cartas.remove(carta);
 	}
@@ -67,7 +67,7 @@ public class Entrenador implements IClasificable, Cloneable
 		return pokemones.iterator();
 	}
 	
-	public Iterator<ICartaHechizo> getItCartas()
+	public Iterator<CartaHechizo> getItCartas()
 	{
 		return cartas.iterator();
 	}
@@ -89,7 +89,7 @@ public class Entrenador implements IClasificable, Cloneable
 	public void mostrarCartas()
 	{
 		int i = 0;
-		Iterator<ICartaHechizo> itCartas = cartas.iterator();
+		Iterator<CartaHechizo> itCartas = cartas.iterator();
 		while (itCartas.hasNext())
 			System.out.println(i++ + "\t" + itCartas.next());
 	}
@@ -117,9 +117,9 @@ public class Entrenador implements IClasificable, Cloneable
 	 * <br>
 	 * @throws Exception Se lanzan dos tipos de excepciones, cuando ya alcanzó el limite de hechizos por torneo (LimiteHechizosException) o cuando no tiene cartas en el ArrayList cartas (NoTieneCartasException).<br>
 	 */
-	public ICartaHechizo sacarCartaRandom() throws Exception
+	public CartaHechizo sacarCartaRandom() throws Exception
 	{
-		ICartaHechizo retorno = null;
+		CartaHechizo retorno = null;
 		if (!this.cartas.isEmpty())
 		{
 			if (this.hechizosDisponibles > 0)
@@ -183,10 +183,10 @@ public class Entrenador implements IClasificable, Cloneable
 		clon.pokemones = new ArrayList<Pokemon>();
 		while (itPokemones.hasNext())
 			clon.pokemones.add((Pokemon) itPokemones.next().clone());
-		Iterator<ICartaHechizo> itCartas = cartas.iterator();
-		clon.cartas = new ArrayList<ICartaHechizo>();
+		Iterator<CartaHechizo> itCartas = cartas.iterator();
+		clon.cartas = new ArrayList<CartaHechizo>();
 		while (itCartas.hasNext())
-			clon.cartas.add((ICartaHechizo) itCartas.next().clone());
+			clon.cartas.add((CartaHechizo) itCartas.next().clone());
 		return clon;
 	}
 	/**
