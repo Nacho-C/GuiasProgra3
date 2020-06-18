@@ -1,4 +1,7 @@
 package modelo;
+
+import java.io.Serializable;
+
 /**
  * @author Grupo 3.
  * <br>
@@ -7,7 +10,7 @@ package modelo;
  * Descripcion: Clase que implementa las Interfaces ICartaHechizo y Cloneable, y que es utilizada por un Entrenador para debilitar al Pokemon enemigo.
  */
 
-public class Niebla extends CartaHechizo implements Cloneable
+public class Niebla extends CartaHechizo implements Cloneable, Serializable
 {
 	public void hechizar(Pokemon pokemon)
 	{

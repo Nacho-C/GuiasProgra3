@@ -1,4 +1,7 @@
 package modelo;
+
+import java.io.Serializable;
+
 /**
  * @author Grupo 3.
  * <br>
@@ -6,7 +9,7 @@ package modelo;
  * <br>
  * Descripcion: Clase abstracta que implementa las interfaces IClasificable y Cloneable. De esta clase se extienden los diferentes tipos de Pokemon. Se encarga de gestionar los atributos, de la estructura del ataque y de la implementacion del golpe inicial.<br>
  */
-public abstract class Pokemon implements IClasificable, Cloneable, IHechizable
+public abstract class Pokemon implements IClasificable, Cloneable, IHechizable, Serializable
 {
 	protected String nombre;
 	private int puntosXP;

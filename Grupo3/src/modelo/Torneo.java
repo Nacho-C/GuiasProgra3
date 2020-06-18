@@ -1,8 +1,12 @@
 package modelo;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import Persistencia.IPersistencia;
+import Persistencia.PersistenciaBIN;
 
 /**
  * @author Grupo 3. <br>
@@ -46,17 +50,33 @@ public class Torneo implements Serializable
 	 */
 	public static Torneo getInstance()
 	{
+		IPersistencia persistencia = new PersistenciaBIN();
 		if (Torneo.instance == null)
-			Torneo.instance = new Torneo();
+		{
+			try
+			{
+				persistencia.abrirInput("Torneo.bin");
+				System.out.println("Se abrió el archivo correctamente");
+				Torneo.instance = (Torneo) persistencia.leer();
+				System.out.println("Etapa leida: " + Torneo.getInstance().etapa);
+				persistencia.cerrarInput();
+			}
+			catch (IOException | ClassNotFoundException e)
+			{
+				System.out.println("No se abrió el archivo torneo.bin");
+				System.out.println("Se genera un torneo nuevo.");
+				Torneo.instance = new Torneo();
+			}
+		}
 		return Torneo.instance;
 	}
 
-	public void addEntrenador(Entrenador entrenador)
+	public synchronized void addEntrenador(Entrenador entrenador)
 	{
 		this.entrenadores.add(entrenador);
 	}
 
-	public void removeEntrenador(Entrenador entrenador)
+	public synchronized void removeEntrenador(Entrenador entrenador)
 	{
 		this.entrenadores.remove(entrenador);
 	}
@@ -69,9 +89,19 @@ public class Torneo implements Serializable
 	 */
 	public void comenzarTorneo()
 	{
+		IPersistencia persistencia = new PersistenciaBIN();
 		Iterator<Enfrentamiento> itEnfrentamientos;
 		double random;
 		Entrenador entrenador1 = null, entrenador2 = null;
+		try
+		{
+			persistencia.abrirOutput("Torneo.bin");
+		}
+		catch (IOException e1)
+		{
+			//Nunca va a entrar
+			System.out.println("No se puede persistir.");
+		}
 		if (this.etapa == 0)
 			if (entrenadores.size() != Torneo.numeroEntrenadores)
 			{
@@ -83,20 +113,64 @@ public class Torneo implements Serializable
 					this.arenas.add(new Arena());
 				entrenadoresClon = (ArrayList<Entrenador>) entrenadores.clone();
 				this.etapa = 1;
-				//Persistir
+				try
+				{
+					persistencia.escribir(this);
+				}
+				catch (IOException e)
+				{
+					System.out.println("No se puede persistir.");
+				}
 			}
 		if (this.etapa == 1)
 		{
 			//Alta de entrenadores
 			this.etapa = 2;
-			//Persistir
+			try
+			{
+				persistencia.escribir(this);
+			}
+			catch (IOException e)
+			{
+				System.out.println("No se puede persistir.");
+			}
 		}
 		if (this.etapa == 2)
 		{
 			//Alta de pokemones
 			this.etapa = 3;
-			//Persistir
+			try
+			{
+				persistencia.escribir(this);
+			}
+			catch (IOException e)
+			{
+				System.out.println("No se puede persistir.");
+			}
 		}
+		
+		
+		
+		try
+		{
+			persistencia.cerrarOutput();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		try
+		{
+			Thread.sleep(5000);
+		}
+		catch (InterruptedException e1)
+		{
+			e1.printStackTrace();
+		}
+		
+		
+		
+		
 		while ((this.etapa >= 3) && (this.entrenadores.size() >= 2))
 		{
 			System.out.println("\n\n\n\nEtapa número " + this.etapa);
@@ -147,7 +221,29 @@ public class Torneo implements Serializable
 					e.printStackTrace();
 				}
 			this.enfrentamientos.clear();
+			if (this.sobraArena())
+			{
+				//MENSAJE CIERRE ARENA
+				System.out.println("Se eliminó la ultima arena porque sobra");
+				this.arenas.remove(this.arenas.size() - 1);
+			}
 			this.etapa++;
+			try
+			{
+				persistencia.escribir(this);
+			}
+			catch (IOException e)
+			{
+				System.out.println("No se puede persistir.");
+			}
+		}
+		try
+		{
+			persistencia.cerrarOutput();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
 		}
 	}
 
@@ -192,7 +288,7 @@ public class Torneo implements Serializable
 		return arenas.size() > (this.entrenadores.size() + this.cantPeleando) / 2;
 	}
 
-	public void removeArena(Arena arena)
+	public synchronized void removeArena(Arena arena)
 	{
 		arenas.remove(arena);
 	}
@@ -202,7 +298,7 @@ public class Torneo implements Serializable
 		return this.arenas.get(indice);
 	}
 
-	public void restaurarPeleando()
+	public synchronized void restaurarPeleando()
 	{
 		this.cantPeleando -= 2;
 	}

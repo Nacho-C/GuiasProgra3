@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 /**	
@@ -10,7 +11,7 @@ import java.util.Iterator;
  * Descripcion: Clase que implementa las interfaces IClasificable y Cloneable, y que contiene diferentes conjuntos de Pokemones y cartas.<br>
  */
 
-public class Entrenador implements IClasificable, Cloneable
+public class Entrenador implements IClasificable, Cloneable, Serializable
 {
 	/**
 	 * cartas ArrayList que almacena todas las cartas del Entrenador.

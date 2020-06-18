@@ -1,4 +1,7 @@
 package modelo;
+
+import java.io.Serializable;
+
 /**
  * @author Grupo 3.
  * <br>

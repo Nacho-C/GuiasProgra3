@@ -1,6 +1,8 @@
 package modelo;
 
-public class Preliminar implements IState
+import java.io.Serializable;
+
+public class Preliminar implements IState, Serializable
 {
 	private Arena arena;
 	private String mensaje;

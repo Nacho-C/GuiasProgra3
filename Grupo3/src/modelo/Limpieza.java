@@ -1,5 +1,7 @@
 package modelo;
 
+import java.io.Serializable;
+
 public class Limpieza implements IState
 {
 	private Arena arena;
@@ -27,29 +29,8 @@ public class Limpieza implements IState
 		Torneo.getInstance().addEntrenador(this.arena.getGanador());
 		Torneo.getInstance().restaurarPeleando();
 		mensaje += "La arena quedó limpia.\n";
-		if (Torneo.getInstance().sobraArena())
-		{
-			mensaje = "Arena en estado de cierre definitivo: \n";
-			this.arena.setEstado(new CierreDefinitivo(this.arena));
-			Torneo.getInstance().removeArena(this.arena);
-			this.arena.setDisponible(false);
-		}
-		else
-		{
-			/*this.arena.setGanador(null);
-			this.arena.setPerdedor(null);
-			this.arena.setCarta1(null);
-			this.arena.setCarta2(null);
-			this.arena.setCartaGanada(null);
-			this.arena.setErrorHechizo1(null);
-			this.arena.setErrorHechizo2(null);
-			this.arena.setPokemon1(null);
-			this.arena.setPokemon2(null);
-			this.arena.setPokemonGanador(null);
-			this.arena.setPokemonPerdedor(null);*/
-			this.arena.setDisponible(true);
-			this.arena.setEstado(new Preliminar(this.arena));
-		}
+		this.arena.setDisponible(true);
+		this.arena.setEstado(new Preliminar(this.arena));
 	}
 	
 	public String getMensaje()

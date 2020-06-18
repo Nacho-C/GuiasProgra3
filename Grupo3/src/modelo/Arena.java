@@ -49,7 +49,6 @@ public class Arena extends Observable implements Serializable
 				System.out.println("Arena " + this.numeroArena + ":\n" + estadoAnterior.getMensaje());
 			}
 		}
-		System.out.println("Cantidad de entrenadores vivos: " + Torneo.getInstance().getCantEntrenadores());
 		notify();
 	}
 
