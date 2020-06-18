@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -10,7 +11,7 @@ import java.util.Iterator;
  * <br>
  * Descripcion: Clase que emplea Patron Singleton y encargada de gestionar los Entrenadores y las rondas.
  */
-public class Torneo
+public class Torneo implements Serializable
 {
 	/**
 	 * numeroEntrenadores Numero de Entrenadores que representa la cantidad de participantes del Torneo.
@@ -23,9 +24,11 @@ public class Torneo
 	 */
 	private static Torneo instance = null;
 
-	public final static int numeroEntrenadores = 16, maxHechizos = 1;
+	public final static int numeroEntrenadores = 16, maxHechizos = 1, cantArenasInicial = 4;
 
 	private ArrayList<Arena> arenas = new ArrayList<Arena>();
+	
+	private ArrayList<Enfrentamiento> enfrentamientos = new ArrayList<Enfrentamiento>();
 	
 	private ArrayList<Entrenador> entrenadores = new ArrayList<Entrenador>(), entrenadoresClon;
 
@@ -62,9 +65,11 @@ public class Torneo
 	public void comenzarTorneo()
 	{
 		double random = 0;
-		Arena arenaActual = null;
+		Enfrentamiento arenaActual = null;
 		boolean bool1 = false, bool2 = false;
 		Entrenador entrenador1 = null, entrenador2 = null;
+		for (int i = 0; i < Torneo.cantArenasInicial; i++)
+			this.arenas.add(new Arena());
 		if (entrenadores.size() != Torneo.numeroEntrenadores)
 			System.out.println("No se puede comenzar el torneo porque debe haber exactamente " + Torneo.numeroEntrenadores + " entrenadores.");
 		else
@@ -101,11 +106,9 @@ public class Torneo
 				}
 				if (entrenadores.size() > 1)
 				{
-					bool1 = Math.random() > 0.5 ? true : false;
-					bool2 = Math.random() > 0.5 ? true : false;
-					arenaActual = new Arena(entrenador1, entrenador2);
-					arenaActual.pelear(bool1, bool2);
-					arenas.add(arenaActual);
+					arenaActual = new Enfrentamiento(entrenador1, entrenador2);
+					arenaActual.pelear();
+					enfrentamientos.add(arenaActual);
 					entrenador1 = entrenador2 = null;
 				}
 			}
@@ -119,7 +122,7 @@ public class Torneo
 	public void reporteGeneral()
 	{
 		int i = 1;
-		Iterator<Arena> itArenas = arenas.iterator();
+		Iterator<Enfrentamiento> itArenas = enfrentamientos.iterator();
 		System.out.println("\n*****\nReporte general:\n");
 		while (itArenas.hasNext())
 			System.out.println("Ronda " + i++ +":\n" + itArenas.next() + "\n\n*****\n");
@@ -135,5 +138,15 @@ public class Torneo
 			aux = itEntrenadoresClon.next();
 			System.out.println(aux.getNombre() + ": " + aux.getCategoria() + "\n");
 		}
+	}
+	
+	public boolean sobraArena()
+	{
+		return arenas.size() > entrenadores.size() / 2;
+	}
+	
+	public void removeArena(Arena arena)
+	{
+		arenas.remove(arena);
 	}
 }
