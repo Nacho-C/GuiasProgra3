@@ -13,10 +13,6 @@ public class CierreDefinitivo implements IState
 	@Override
 	public void correr()
 	{
-		mensaje = "Arena en estado de cierre definitivo: \n";
-		//ESTO SE VA A ROMPER
-		
-		Torneo.getInstance().removeArena(this.arena);
 	}
 	
 	public String getMensaje()

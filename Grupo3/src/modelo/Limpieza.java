@@ -14,17 +14,28 @@ public class Limpieza implements IState
 	public void correr()
 	{
 		mensaje = "Arena en estado de limpieza: \n";
-		Torneo.getInstance().removeEntrenador(this.arena.getPerdedor());
 		if (this.arena.getPokemonGanador().getVitalidad() <= 0)
 		{
 			this.arena.getGanador().removePokemon(this.arena.getPokemonGanador());
 			mensaje += "El " + this.arena.getPokemonGanador().getNombre() + " de " + this.arena.getGanador().getNombre() + " muere en batalla.\n";
 		}
 		else
+		{
 			this.arena.getPokemonGanador().curar();
+			mensaje += "El " + this.arena.getPokemonGanador().getNombre() + " de " + this.arena.getGanador().getNombre() + " ha sido curado.\n";
+		}
+		Torneo.getInstance().addEntrenador(this.arena.getGanador());
+		Torneo.getInstance().restaurarPeleando();
+		mensaje += "La arena quedó limpia.\n";
 		if (Torneo.getInstance().sobraArena())
+		{
+			mensaje = "Arena en estado de cierre definitivo: \n";
 			this.arena.setEstado(new CierreDefinitivo(this.arena));
+			Torneo.getInstance().removeArena(this.arena);
+			this.arena.setDisponible(false);
+		}
 		else
+		{
 			/*this.arena.setGanador(null);
 			this.arena.setPerdedor(null);
 			this.arena.setCarta1(null);
@@ -36,7 +47,9 @@ public class Limpieza implements IState
 			this.arena.setPokemon2(null);
 			this.arena.setPokemonGanador(null);
 			this.arena.setPokemonPerdedor(null);*/
+			this.arena.setDisponible(true);
 			this.arena.setEstado(new Preliminar(this.arena));
+		}
 	}
 	
 	public String getMensaje()

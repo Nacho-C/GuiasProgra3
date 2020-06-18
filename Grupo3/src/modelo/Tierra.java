@@ -31,7 +31,7 @@ public class Tierra extends Pokemon
 	@Override
 	public void recibeNiebla()
 	{
-		System.out.println("El hechizo Niebla no afecta a los Pokemon de tipo Tierra.");
+		//System.out.println("El hechizo Niebla no afecta a los Pokemon de tipo Tierra.");
 	}
 
 	@Override

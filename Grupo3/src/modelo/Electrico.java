@@ -19,7 +19,7 @@ public class Electrico extends Pokemon
 		if (critico < probCritico)
 		{
 			otro.recibeDano(this.fuerza * 2);
-			System.out.println(this.getNombre() + " realizó un ataque crítico.");
+			//System.out.println(this.getNombre() + " realizó un ataque crítico.");
 		}
 		else
 			otro.recibeDano(this.fuerza);
@@ -55,7 +55,7 @@ public class Electrico extends Pokemon
 	@Override
 	public void recibeTormenta()
 	{
-		System.out.println("El hechizo Tormenta no afecta a los Pokemon de tipo Eléctrico.");
+		//System.out.println("El hechizo Tormenta no afecta a los Pokemon de tipo Eléctrico.");
 	}
 
 	@Override

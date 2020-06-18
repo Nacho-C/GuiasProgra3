@@ -13,13 +13,16 @@ public class Preliminar implements IState
 	@Override
 	public void correr()
 	{
-		String nombre1 = this.arena.getEntrenador1().getNombre(), nombre2 = this.arena.getEntrenador2().getNombre(), pok1 = this.arena.getPokemon1().getNombre(), pok2 = this.arena.getPokemon2().getNombre();
+		String nombre1 = this.arena.getEntrenador1().getNombre(), nombre2 = this.arena.getEntrenador2().getNombre(); 
+		String pok1, pok2;
 		mensaje = "Arena en estado preliminar: \n";
 		boolean hechizo1 = Math.random() > 0.5 ? true : false;
 		boolean hechizo2 = Math.random() > 0.5 ? true : false;
 		this.arena.setPokemon1(this.arena.getEntrenador1().getPokemonRandom());
-		mensaje += "El entrenador "+ nombre1 + " elige a su " + pok1 + ".\n";
 		this.arena.setPokemon2(this.arena.getEntrenador2().getPokemonRandom());
+		pok1 = this.arena.getPokemon1().getNombre();
+		pok2 = this.arena.getPokemon2().getNombre();
+		mensaje += "El entrenador "+ nombre1 + " elige a su " + pok1 + ".\n";
 		mensaje += "El entrenador "+ nombre2 + " elige a su " + pok2 + ".\n";
 		mensaje += "Pelean " + nombre1 + " con su " + this.arena.getPokemon1().getNombre() + " contra "
 		+ nombre2 + " con su " + this.arena.getPokemon2().getNombre() + ".\n";

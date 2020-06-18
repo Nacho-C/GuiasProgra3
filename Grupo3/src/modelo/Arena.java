@@ -6,15 +6,19 @@ import java.util.Observable;
 public class Arena extends Observable implements Serializable
 {
 	private IState estado, estadoAnterior;
-	private boolean ocupada;
+	private boolean disponible;
 	private Entrenador entrenador1, entrenador2, ganador, perdedor;
 	private Pokemon pokemon1, pokemon2, pokemonGanador;
 	private CartaHechizo carta1 = null, carta2 = null, cartaGanada = null;
+	public int numeroArena;
+	private static int cantArena = 0;
 
 	public Arena()
 	{
+		this.numeroArena = Arena.cantArena;
+		Arena.cantArena++;
 		this.estado = new Preliminar(this);
-		this.ocupada = false;
+		this.disponible = true;
 	}
 
 	public void setEstado(IState estado)
@@ -24,38 +28,29 @@ public class Arena extends Observable implements Serializable
 
 	public synchronized void iniciar(Entrenador ent1, Entrenador ent2)
 	{
-		while (ocupada)
-			try
-			{
-				wait();
-			}
-			catch (InterruptedException e)
-			{
-				e.printStackTrace();
-			}
-		ocupada = true;
-		this.entrenador1 = ent1;
-		this.entrenador2 = ent2;
-		this.carta1 = this.carta2 = this.cartaGanada = null;
-		for (int i=0; i<4; i++)
+		if (!this.disponible)
 		{
-			estadoAnterior = estado;
-			estado.correr();
-			this.setChanged();
-			this.notifyObservers(estadoAnterior);
+			Torneo.getInstance().addEntrenador(this.entrenador1);
+			Torneo.getInstance().addEntrenador(this.entrenador2);
 		}
+		else
+		{
+			this.disponible = false;
+			this.entrenador1 = ent1;
+			this.entrenador2 = ent2;
+			this.carta1 = this.carta2 = this.cartaGanada = null;
+			for (int i = 0; i < 4; i++)
+			{
+				estadoAnterior = estado;
+				estado.correr();
+				this.setChanged();
+				this.notifyObservers(estadoAnterior);
+				// TEMPORAL
+				System.out.println("Arena " + this.numeroArena + ":\n" + estadoAnterior.getMensaje());
+			}
+		}
+		System.out.println("Cantidad de entrenadores vivos: " + Torneo.getInstance().getCantEntrenadores());
 		notify();
-		ocupada = false;
-		
-	}
-
-	public synchronized void finalizarPelea()
-	{
-		// Terminamos la pelea y hacemos el setEstado a limpieza
-
-		// Preguntamos si quedan más peleas. Si hay más peleas hacemos el setEstado a
-		// preeliminar y liberamos el recurso notifyAll. Si no hacemos cierre
-		// definitivo.
 	}
 
 	public Entrenador getEntrenador1()
@@ -146,6 +141,15 @@ public class Arena extends Observable implements Serializable
 	public void setCartaGanada(CartaHechizo cartaGanada)
 	{
 		this.cartaGanada = cartaGanada;
-	}	
-	
+	}
+
+	public boolean isDisponible()
+	{
+		return this.disponible;
+	}
+
+	public void setDisponible(boolean disp)
+	{
+		this.disponible = disp;
+	}
 }

@@ -58,7 +58,7 @@ public class Definicion implements IState
 		this.arena.getPokemonGanador().addXP(3);
 		pokemonPerdedor.addXP(1);
 		this.arena.getGanador().ganarCreditos(this.arena.getPerdedor().getCategoria() * 0.4);
-		mensaje += this.arena.getGanador().getNombre() + " tiene " + this.arena.getGanador().getNombre() + " créditos.\n";
+		mensaje += this.arena.getGanador().getNombre() + " tiene " + this.arena.getGanador().getCreditos() + " créditos.\n";
 		if (this.arena.getCartaGanada() != null)
 		{
 			this.arena.getGanador().addCarta(this.arena.getCartaGanada());	

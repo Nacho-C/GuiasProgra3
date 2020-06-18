@@ -12,7 +12,7 @@ public class Fuego extends Pokemon
 	{
 		this.fuerza *= 1.1;
 		this.vitalidad *= 1.1;
-		System.out.println(this.nombre + " recargó 10% de fuerza y 10% de vitalidad.");
+		//System.out.println(this.nombre + " recargó 10% de fuerza y 10% de vitalidad.");
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class Fuego extends Pokemon
 	@Override
 	public void recibeNiebla()
 	{
-		System.out.println("El hechizo Niebla no afecta a los Pokemon de tipo Fuego.");
+		//System.out.println("El hechizo Niebla no afecta a los Pokemon de tipo Fuego.");
 	}
 
 	@Override

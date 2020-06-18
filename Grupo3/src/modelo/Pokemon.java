@@ -63,10 +63,10 @@ public abstract class Pokemon implements IClasificable, Cloneable, IHechizable
 	public void ataque(Pokemon otro)
 	{
 		this.golpeInicial(otro);
-		System.out.println(this.nombre + " realiza un golpe inicial.");
+		//System.out.println(this.nombre + " realiza un golpe inicial.");
 		this.recarga();
 		this.golpeFinal(otro);
-		System.out.println(this.nombre + " realiza un golpe final.");
+		//System.out.println(this.nombre + " realiza un golpe final.");
 	}
 	
 	/**
@@ -85,7 +85,7 @@ public abstract class Pokemon implements IClasificable, Cloneable, IHechizable
 	 */
 	public void recarga()
 	{
-		System.out.println(this.nombre + " no recarga.");
+		//System.out.println(this.nombre + " no recarga.");
 	}
 	
 	/**

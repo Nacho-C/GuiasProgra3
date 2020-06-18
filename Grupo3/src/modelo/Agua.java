@@ -12,7 +12,6 @@ public class Agua extends Pokemon
 	{
 		this.fuerza *= 1.1;
 		this.vitalidad *= 1.1;
-		System.out.println(this.nombre + " recargó 10% de fuerza y 10% de vitalidad.");
 	}
 	
 	@Override
@@ -49,7 +48,7 @@ public class Agua extends Pokemon
 	@Override
 	public void recibeTormenta()
 	{
-		System.out.println("El hechizo Tormenta no afecta a los Pokemon de tipo Agua.");
+		//System.out.println("El hechizo Tormenta no afecta a los Pokemon de tipo Agua.");
 	}
 
 	@Override
