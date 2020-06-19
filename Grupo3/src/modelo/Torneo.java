@@ -36,7 +36,7 @@ public class Torneo implements Serializable
 
 	private ArrayList<Entrenador> entrenadores = new ArrayList<Entrenador>(), entrenadoresClon;
 	
-	private int cantPeleando, etapa = 0;
+	private int cantPeleando, etapa;
 
 	private Torneo()
 	{
@@ -50,6 +50,7 @@ public class Torneo implements Serializable
 	 */
 	public static Torneo getInstance()
 	{
+		Torneo leido;
 		IPersistencia persistencia = new PersistenciaBIN();
 		if (Torneo.instance == null)
 		{
@@ -57,15 +58,18 @@ public class Torneo implements Serializable
 			{
 				persistencia.abrirInput("Torneo.bin");
 				System.out.println("Se abrió el archivo correctamente");
-				Torneo.instance = (Torneo) persistencia.leer();
+				leido = (Torneo) persistencia.leer();
+				Torneo.instance = leido;
 				System.out.println("Etapa leida: " + Torneo.getInstance().etapa);
 				persistencia.cerrarInput();
 			}
 			catch (IOException | ClassNotFoundException e)
 			{
+				System.out.println(e.getMessage());
 				System.out.println("No se abrió el archivo torneo.bin");
 				System.out.println("Se genera un torneo nuevo.");
 				Torneo.instance = new Torneo();
+				Torneo.instance.etapa = 0;
 			}
 		}
 		return Torneo.instance;
@@ -93,15 +97,6 @@ public class Torneo implements Serializable
 		Iterator<Enfrentamiento> itEnfrentamientos;
 		double random;
 		Entrenador entrenador1 = null, entrenador2 = null;
-		try
-		{
-			persistencia.abrirOutput("Torneo.bin");
-		}
-		catch (IOException e1)
-		{
-			//Nunca va a entrar
-			System.out.println("No se puede persistir.");
-		}
 		if (this.etapa == 0)
 			if (entrenadores.size() != Torneo.numeroEntrenadores)
 			{
@@ -115,33 +110,41 @@ public class Torneo implements Serializable
 				this.etapa = 1;
 				try
 				{
+					persistencia.abrirOutput("Torneo.bin");
 					persistencia.escribir(this);
+					persistencia.cerrarOutput();
 				}
 				catch (IOException e)
 				{
 					System.out.println("No se puede persistir.");
 				}
 			}
+		
 		if (this.etapa == 1)
 		{
 			//Alta de entrenadores
 			this.etapa = 2;
 			try
 			{
+				persistencia.abrirOutput("Torneo.bin");
 				persistencia.escribir(this);
+				persistencia.cerrarOutput();
 			}
 			catch (IOException e)
 			{
 				System.out.println("No se puede persistir.");
 			}
 		}
+		
 		if (this.etapa == 2)
 		{
 			//Alta de pokemones
 			this.etapa = 3;
 			try
 			{
+				persistencia.abrirOutput("Torneo.bin");
 				persistencia.escribir(this);
+				persistencia.cerrarOutput();
 			}
 			catch (IOException e)
 			{
@@ -149,27 +152,9 @@ public class Torneo implements Serializable
 			}
 		}
 		
-		
-		
-		try
-		{
-			persistencia.cerrarOutput();
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		try
-		{
-			Thread.sleep(5000);
-		}
-		catch (InterruptedException e1)
-		{
-			e1.printStackTrace();
-		}
-		
-		
-		
+		Iterator<Entrenador> it = this.entrenadores.iterator();
+		while (it.hasNext())
+			System.out.println(it.next().getNombre());
 		
 		while ((this.etapa >= 3) && (this.entrenadores.size() >= 2))
 		{
@@ -230,20 +215,14 @@ public class Torneo implements Serializable
 			this.etapa++;
 			try
 			{
+				persistencia.abrirOutput("Torneo.bin");
 				persistencia.escribir(this);
+				persistencia.cerrarOutput();
 			}
 			catch (IOException e)
 			{
 				System.out.println("No se puede persistir.");
 			}
-		}
-		try
-		{
-			persistencia.cerrarOutput();
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
 		}
 	}
 
