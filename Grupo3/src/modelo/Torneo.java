@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.TreeSet;
 
 import Persistencia.IPersistencia;
 import Persistencia.PersistenciaBIN;
@@ -36,8 +37,10 @@ public class Torneo implements Serializable
 
 	private ArrayList<Entrenador> entrenadores = new ArrayList<Entrenador>(), entrenadoresClon;
 	
-	private int cantPeleando, etapa;
-
+	private int cantPeleando = 0, etapa, cantArenasAnterior;
+	
+	private String enfrentamientosTotal = "";
+	
 	private Torneo()
 	{
 	}
@@ -57,19 +60,16 @@ public class Torneo implements Serializable
 			try
 			{
 				persistencia.abrirInput("Torneo.bin");
-				System.out.println("Se abrió el archivo correctamente");
 				leido = (Torneo) persistencia.leer();
 				Torneo.instance = leido;
-				System.out.println("Etapa leida: " + Torneo.getInstance().etapa);
 				persistencia.cerrarInput();
 			}
 			catch (IOException | ClassNotFoundException e)
 			{
-				System.out.println(e.getMessage());
-				System.out.println("No se abrió el archivo torneo.bin");
-				System.out.println("Se genera un torneo nuevo.");
 				Torneo.instance = new Torneo();
-				Torneo.instance.etapa = 0;
+				Torneo.instance.etapa = 1;
+				for (int i = 0; i < Torneo.cantArenasInicial; i++)
+					Torneo.instance.arenas.add(new Arena());
 			}
 		}
 		return Torneo.instance;
@@ -91,74 +91,18 @@ public class Torneo implements Serializable
 	 * numeroEntrenadores, no habrá rondas. <br>
 	 * <b>Post:</b> Un entrenador gana el Torneo.<br>
 	 */
-	public void comenzarTorneo()
+	public void correrTorneo()
 	{
-		IPersistencia persistencia = new PersistenciaBIN();
 		Iterator<Enfrentamiento> itEnfrentamientos;
 		double random;
 		Entrenador entrenador1 = null, entrenador2 = null;
-		if (this.etapa == 0)
-			if (entrenadores.size() != Torneo.numeroEntrenadores)
-			{
-				//FALTA MENSAJE DE ERROR
-			}
-			else
-			{
-				for (int i = 0; i < Torneo.cantArenasInicial; i++)
-					this.arenas.add(new Arena());
-				entrenadoresClon = (ArrayList<Entrenador>) entrenadores.clone();
-				this.etapa = 1;
-				try
-				{
-					persistencia.abrirOutput("Torneo.bin");
-					persistencia.escribir(this);
-					persistencia.cerrarOutput();
-				}
-				catch (IOException e)
-				{
-					System.out.println("No se puede persistir.");
-				}
-			}
-		
-		if (this.etapa == 1)
-		{
-			//Alta de entrenadores
-			this.etapa = 2;
-			try
-			{
-				persistencia.abrirOutput("Torneo.bin");
-				persistencia.escribir(this);
-				persistencia.cerrarOutput();
-			}
-			catch (IOException e)
-			{
-				System.out.println("No se puede persistir.");
-			}
-		}
 		
 		if (this.etapa == 2)
-		{
-			//Alta de pokemones
-			this.etapa = 3;
-			try
-			{
-				persistencia.abrirOutput("Torneo.bin");
-				persistencia.escribir(this);
-				persistencia.cerrarOutput();
-			}
-			catch (IOException e)
-			{
-				System.out.println("No se puede persistir.");
-			}
-		}
+			entrenadoresClon = (ArrayList<Entrenador>) entrenadores.clone();
 		
-		Iterator<Entrenador> it = this.entrenadores.iterator();
-		while (it.hasNext())
-			System.out.println(it.next().getNombre());
-		
-		while ((this.etapa >= 3) && (this.entrenadores.size() >= 2))
+		else if (this.etapa >= 3)
 		{
-			System.out.println("\n\n\n\nEtapa número " + this.etapa);
+			this.cantArenasAnterior = this.getCantArenas();
 			while (this.entrenadores.size() >= 2)
 			{
 				//Seleccion de entrenadores y creacion de enfrentamientos
@@ -181,21 +125,21 @@ public class Torneo implements Serializable
 					if (!entrenador2.tienePokemones())
 					{
 						//TIRAR EXCEPCION
-						this.entrenadores.remove(entrenador1);
 						entrenador2 = null;
 					}
 				}
 				if (entrenador1 != null && entrenador2 != null)
 				{
 					this.enfrentamientos.add(new Enfrentamiento(entrenador1,entrenador2));
-					entrenador1 = entrenador2 = null;
 				}
+				entrenador1 = entrenador2 = null;
 			}
 			this.cantPeleando = this.enfrentamientos.size() * 2;
-			//entrenadores - cantPeleando para saber si alguno paso de suerte
 			itEnfrentamientos = this.enfrentamientos.iterator();
 			while (itEnfrentamientos.hasNext())
+			{
 				itEnfrentamientos.next().start();
+			}
 			while (this.cantPeleando > 0)
 				try
 				{
@@ -206,23 +150,12 @@ public class Torneo implements Serializable
 					e.printStackTrace();
 				}
 			this.enfrentamientos.clear();
-			if (this.sobraArena())
+			while (this.sobraArena() && this.arenas.size() != 1)
 			{
-				//MENSAJE CIERRE ARENA
-				System.out.println("Se eliminó la ultima arena porque sobra");
 				this.arenas.remove(this.arenas.size() - 1);
 			}
-			this.etapa++;
-			try
-			{
-				persistencia.abrirOutput("Torneo.bin");
-				persistencia.escribir(this);
-				persistencia.cerrarOutput();
-			}
-			catch (IOException e)
-			{
-				System.out.println("No se puede persistir.");
-			}
+			if (this.getCantEntrenadores() == 1)
+				this.etapa = -1;
 		}
 	}
 
@@ -240,16 +173,13 @@ public class Torneo implements Serializable
 			System.out.println("Ronda " + i++ + ":\n" + itArenas.next() + "\n\n*****\n");
 	}
 
-	public void clasificaciones()
+	public TreeSet<Entrenador> getClasificaciones()
 	{
+		TreeSet<Entrenador> aux2 = new TreeSet<Entrenador>();
 		Iterator<Entrenador> itEntrenadoresClon = entrenadoresClon.iterator();
-		System.out.println("Clasificación de los entrenadores:\n");
-		Entrenador aux = null;
 		while (itEntrenadoresClon.hasNext())
-		{
-			aux = itEntrenadoresClon.next();
-			System.out.println(aux.getNombre() + ": " + aux.getCategoria() + "\n");
-		}
+			aux2.add(itEntrenadoresClon.next());
+		return aux2;
 	}
 
 	public Iterator<Arena> getItArenas()
@@ -290,5 +220,30 @@ public class Torneo implements Serializable
 	public int getEtapa()
 	{
 		return this.etapa;
+	}
+	
+	public void setEtapa(int etapa)
+	{
+		this.etapa = etapa;
+	}
+	
+	public Iterator<Entrenador> getItEntrenadores()
+	{
+		return this.entrenadores.iterator();
+	}
+	
+	public int getCantArenasAnterior()
+	{
+		return this.cantArenasAnterior;
+	}
+	
+	public void agregarEnfrentamiento(String mensaje)
+	{
+		this.enfrentamientosTotal += mensaje;
+	}
+	
+	public String getEnfrentamientosTotal()
+	{
+		return this.enfrentamientosTotal;
 	}
 }

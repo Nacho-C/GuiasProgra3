@@ -2,7 +2,7 @@ package modelo;
 
 import java.io.Serializable;
 
-public class Limpieza implements IState
+public class Limpieza implements IState, Serializable
 {
 	private Arena arena;
 	private String mensaje;
@@ -29,6 +29,7 @@ public class Limpieza implements IState
 		Torneo.getInstance().addEntrenador(this.arena.getGanador());
 		Torneo.getInstance().restaurarPeleando();
 		mensaje += "La arena quedó limpia.\n";
+		Torneo.getInstance().agregarEnfrentamiento(("Arena " + this.arena.getNumeroArena() + ":\nEl entrenador " + this.arena.getGanador().getNombre() + " y su " + this.arena.getPokemonGanador().getNombre() + " le ganaron a " + this.arena.getPerdedor().getNombre() + ".\n"));
 		this.arena.setDisponible(true);
 		this.arena.setEstado(new Preliminar(this.arena));
 	}

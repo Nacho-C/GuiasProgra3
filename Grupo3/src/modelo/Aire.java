@@ -74,4 +74,10 @@ public class Aire extends Pokemon
 	{
 		this.vitalidad = 500;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return super.toString() + " (Aire)";
+	}
 }

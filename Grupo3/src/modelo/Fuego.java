@@ -74,4 +74,10 @@ public class Fuego extends Pokemon
 	{
 		this.vitalidad = 530;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return super.toString() + " (Fuego)";
+	}
 }

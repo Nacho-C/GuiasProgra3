@@ -57,4 +57,10 @@ public class Tierra extends Pokemon
 	{
 		this.vitalidad = 700;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return super.toString() + " (Tierra)";
+	}
 }

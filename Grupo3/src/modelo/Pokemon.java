@@ -9,7 +9,7 @@ import java.io.Serializable;
  * <br>
  * Descripcion: Clase abstracta que implementa las interfaces IClasificable y Cloneable. De esta clase se extienden los diferentes tipos de Pokemon. Se encarga de gestionar los atributos, de la estructura del ataque y de la implementacion del golpe inicial.<br>
  */
-public abstract class Pokemon implements IClasificable, Cloneable, IHechizable, Serializable
+public abstract class Pokemon implements IClasificable, Cloneable, IHechizable, Serializable, Comparable<Pokemon>
 {
 	protected String nombre;
 	private int puntosXP;
@@ -125,8 +125,20 @@ public abstract class Pokemon implements IClasificable, Cloneable, IHechizable, 
 	}
 	
 	@Override
+	public int compareTo(Pokemon otro)
+	{
+		int retorno = 0;
+		if (this != otro)
+			if (this.getCategoria() < otro.getCategoria())
+				retorno = 1;
+			else
+				retorno = -1;
+		return retorno;	
+	}
+	
+	@Override
 	public String toString()
 	{
-		return "Nombre: " + this.nombre + "\nPuntos de experiencia / Categoría: " + this.puntosXP + "\nVitalidad: " + this.vitalidad + "\nFuerza: " + this.fuerza + "\nEscudo: " + this.escudo;
+		return this.nombre + " - " + this.puntosXP;
 	}
 }

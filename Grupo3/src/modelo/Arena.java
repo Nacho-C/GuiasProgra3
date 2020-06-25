@@ -10,7 +10,7 @@ public class Arena extends Observable implements Serializable
 	private Entrenador entrenador1, entrenador2, ganador, perdedor;
 	private Pokemon pokemon1, pokemon2, pokemonGanador;
 	private CartaHechizo carta1 = null, carta2 = null, cartaGanada = null;
-	public int numeroArena;
+	private int numeroArena;
 	private static int cantArena = 0;
 
 	public Arena()
@@ -41,12 +41,19 @@ public class Arena extends Observable implements Serializable
 			this.carta1 = this.carta2 = this.cartaGanada = null;
 			for (int i = 0; i < 4; i++)
 			{
+				try
+				{
+					Thread.sleep(2500);
+				}
+				catch (InterruptedException e)
+				{
+					e.printStackTrace();
+				}
 				estadoAnterior = estado;
 				estado.correr();
-				this.setChanged();
+				
 				this.notifyObservers(estadoAnterior);
-				// TEMPORAL
-				System.out.println("Arena " + this.numeroArena + ":\n" + estadoAnterior.getMensaje());
+				this.setChanged();
 			}
 		}
 		notify();
@@ -150,5 +157,10 @@ public class Arena extends Observable implements Serializable
 	public void setDisponible(boolean disp)
 	{
 		this.disponible = disp;
+	}
+	
+	public int getNumeroArena()
+	{
+		return this.numeroArena;
 	}
 }

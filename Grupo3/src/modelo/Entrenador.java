@@ -11,7 +11,7 @@ import java.util.Iterator;
  * Descripcion: Clase que implementa las interfaces IClasificable y Cloneable, y que contiene diferentes conjuntos de Pokemones y cartas.<br>
  */
 
-public class Entrenador implements IClasificable, Cloneable, Serializable
+public class Entrenador implements IClasificable, Cloneable, Serializable, Comparable<Entrenador>
 {
 	/**
 	 * cartas ArrayList que almacena todas las cartas del Entrenador.
@@ -198,5 +198,23 @@ public class Entrenador implements IClasificable, Cloneable, Serializable
 	public boolean tienePokemones()
 	{
 		return !this.pokemones.isEmpty();
+	}
+	
+	@Override
+	public int compareTo(Entrenador otro)
+	{
+		int retorno = 0;
+		if (this != otro)
+			if (this.getCategoria() < otro.getCategoria())
+				retorno = 1;
+			else
+				retorno = -1;
+		return retorno;	
+	}
+	
+	@Override
+	public String toString()
+	{
+		return this.nombre + " - " + this.getCategoria() + " puntos";
 	}
 }

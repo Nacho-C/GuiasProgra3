@@ -37,6 +37,15 @@ public class Enfrentamiento extends Thread implements Serializable
 	@Override
 	public void run()
 	{
+		long random = (long) (Math.random() * 5000);
+		try
+		{
+			Thread.sleep(random);
+		}
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
 		Arena arena = null;
 		Iterator<Arena> it = Torneo.getInstance().getItArenas();
 		arena = it.next();

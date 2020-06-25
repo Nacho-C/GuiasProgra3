@@ -77,4 +77,10 @@ public class Electrico extends Pokemon
 	{
 		this.vitalidad = 600;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return super.toString() + " (Eléctrico)";
+	}
 }
