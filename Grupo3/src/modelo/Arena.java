@@ -51,9 +51,8 @@ public class Arena extends Observable implements Serializable
 				}
 				estadoAnterior = estado;
 				estado.correr();
-				
-				this.notifyObservers(estadoAnterior);
 				this.setChanged();
+				this.notifyObservers(estadoAnterior);
 			}
 		}
 		notify();
