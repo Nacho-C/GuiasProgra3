@@ -11,8 +11,7 @@ import java.util.Iterator;
  *         reserva. Si no hay arenas libres se elige una al azar.<br>
  */
 
-public class Enfrentamiento extends Thread implements Serializable
-{
+public class Enfrentamiento extends Thread implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Entrenador entrenador1, entrenador2;
 
@@ -22,24 +21,24 @@ public class Enfrentamiento extends Thread implements Serializable
 	 * <b>Pre:</b> Ninguno de los entrenadores pasados por parametro puede ser null.
 	 * <br>
 	 */
-	public Enfrentamiento(Entrenador entrenador1, Entrenador entrenador2)
-	{
+	public Enfrentamiento(Entrenador entrenador1, Entrenador entrenador2) {
 		this.entrenador1 = entrenador1;
 		this.entrenador2 = entrenador2;
 	}
 
+	/**
+	 * Descripción: Metodo run propio de la clase Thread que se encarga de manejar
+	 * el comportamiento del hilo<br>
+	 */
 	@Override
-	public void run()
-	{
+	public void run() {
 		Arena arena = null;
 		Iterator<Arena> it = Torneo.getInstance().getItArenas();
 		arena = it.next();
-		while (it.hasNext() && arena != null && !arena.isDisponible())
-		{
+		while (it.hasNext() && arena != null && !arena.isDisponible()) {
 			arena = it.next();
 		}
-		if (!it.hasNext() && !arena.isDisponible())
-		{
+		if (!it.hasNext() && !arena.isDisponible()) {
 			int r = (int) (0.99 * Math.random() * Torneo.getInstance().getCantArenas());
 			arena = Torneo.getInstance().getArena(r);
 		}

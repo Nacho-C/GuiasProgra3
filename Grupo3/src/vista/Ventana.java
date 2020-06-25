@@ -29,6 +29,13 @@ import javax.swing.event.ListSelectionListener;
 
 import modelo.Entrenador;
 import modelo.Pokemon;
+/**
+ * @author Grupo 3.
+ * <br>
+ * Clase Ventana.
+ * <br>
+ * Descripcion: La clase Ventana se extiende de JFrame e implementa las interfaces KeyListener y ListSelectionListener. Esta clase conecta el controlador con el usuario.<br>
+ */
 
 public class Ventana extends JFrame implements KeyListener, ListSelectionListener
 {
@@ -111,7 +118,10 @@ public class Ventana extends JFrame implements KeyListener, ListSelectionListene
 	private JTextPane textoVitalidad;
 	private JTextPane textoFuerza;
 	private JTextPane textoEscudo;
-
+	
+	/**
+	 * Descripcion: Constructor encargado de generar todas las componentes.<br>
+	 */
 	public Ventana(int etapa)
 	{
 		setResizable(false);
@@ -460,7 +470,11 @@ public class Ventana extends JFrame implements KeyListener, ListSelectionListene
 	public void keyPressed(KeyEvent arg0)
 	{
 	}
-
+	
+	/**
+	 * Descripcion: Validacion de condiciones para habilitar o no el boton de AltaPokemon y de AltaEntrenador.<br>
+	 * @param KeyEvent arg0 evento de la vista a evaluar.
+	 */
 	public void keyReleased(KeyEvent arg0)
 	{
 		JTextField texto = (JTextField) arg0.getSource();
@@ -522,7 +536,10 @@ public class Ventana extends JFrame implements KeyListener, ListSelectionListene
 	{
 		return this.listaEntrenadoresVivos;
 	}
-
+	/**
+	 * Descripcion: Validacion de condiciones para habilitar o no el boton de BajaEntrenador y de BajaPokemon , y refrezca las listas al seleccionar un entrenador<br>
+	 * @param ListSelectionEvent arg0 evento de la vista a evaluar.
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent arg0)
 	{
@@ -590,6 +607,9 @@ public class Ventana extends JFrame implements KeyListener, ListSelectionListene
 		this.etapa = etapa;
 	}
 
+	/**
+	 * Descripcion: Metodo encargado de actualizar el panel segun la etapa.<br>
+	 */
 	public void refrescarEtapa()
 	{
 		CardLayout layout = (CardLayout) this.switchEtapa.getLayout();
