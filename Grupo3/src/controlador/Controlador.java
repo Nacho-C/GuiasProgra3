@@ -32,8 +32,8 @@ import vista.Ventana;
 /**
  * @author Grupo 3. <br>
  *         Clase Controlador. <br>
- *         Descripcion: Clase que emplea Patron Singleton y encargada de
- *         gestionar los Entrenadores y las rondas. Implementa la interfaz Serializable
+ *         Descripcion: Funciona como nexo entre el modelo y la vista.
+ * @param persistencia
  */
 public class Controlador implements ActionListener, ListSelectionListener, Observer
 {
@@ -42,6 +42,11 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 	private Ventana ventana;
 	private ArrayList<Arena> observadas = new ArrayList<Arena>();
 
+	/**
+	 * Descripcion: Construye el controlador, crea una nueva ventana y obtiene la
+	 * instancia de Torneo del patron Singleton. Si carga un torneo persistido
+	 * anteriormente corre por primera vez su metodo correrTorneo() <br>
+	 */
 	public Controlador()
 	{
 		this.torneo = Torneo.getInstance();
@@ -81,12 +86,15 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 		}
 	}
 
+	/**
+	 * Descripcion: Se encarga de llevar a cabo las acciones de cada boton. <br>
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
 		JButton boton = (JButton) arg0.getSource();
 		String comando = arg0.getActionCommand();
-		
+
 		if (comando.equalsIgnoreCase("AGREGARENTRENADOR"))
 		{
 			Entrenador entrenador = new Entrenador(this.ventana.getTextoNombreEntrenador().getText());
@@ -110,7 +118,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 			else
 				this.ventana.getBotonSigEtapa().setEnabled(false);
 		}
-		
+
 		if (comando.equalsIgnoreCase("ELIMINARENTRENADOR"))
 		{
 			Entrenador entrenador = (Entrenador) this.ventana.getListaEntrenadoresVivos().getSelectedValue();
@@ -123,7 +131,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 			else
 				this.ventana.getBotonSigEtapa().setEnabled(false);
 		}
-		
+
 		if (comando.equalsIgnoreCase("AGREGARPOKEMON"))
 		{
 			Pokemon pokemon = PokemonFactory.getPokemon(this.ventana.getTextoNombrePokemon().getText(),
@@ -137,7 +145,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 							+ pokemon.getNombre() + " de " + entrenador.getNombre() + ".\n");
 			boton.setEnabled(false);
 		}
-		
+
 		if (comando.equalsIgnoreCase("ELIMINARPOKEMON"))
 		{
 			Pokemon pokemon = (Pokemon) this.ventana.getListaPokemones().getSelectedValue();
@@ -149,7 +157,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 							+ pokemon.getNombre() + " de " + entrenador.getNombre() + ".\n");
 			boton.setEnabled(false);
 		}
-		
+
 		if (comando.equalsIgnoreCase("SIGUIENTEETAPA"))
 		{
 			if (this.torneo.getEtapa() != -1)
@@ -186,6 +194,11 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 		}
 	}
 
+	/**
+	 * Descripcion: Metodo necesario para la implementacion del patron Observer. Se
+	 * encarga de llevar la informacion del estado de cada arena a sus respectivos
+	 * paneles en la vista <br>
+	 */
 	@Override
 	public void update(Observable arg0, Object arg1)
 	{
@@ -220,6 +233,11 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 	{
 	}
 
+	/**
+	 * Descripcion: Agrega todas las arenas del conjunto presente en la instancia de
+	 * Torneo a la lista de observables del controlador, para la implementacion del
+	 * patron Observer <br>
+	 */
 	private void observarArenas()
 	{
 		Arena aux;
@@ -232,6 +250,9 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 		}
 	}
 
+	/**
+	 * Descripcion: Refresca la lista de entrenadores de la vista.<br>
+	 */
 	private void refrescarListaEntrenadores()
 	{
 		this.ventana.getTextoVitalidad().setText("");
@@ -245,6 +266,11 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 			modeloListaEntrenadores.addElement(itEntrenadores.next());
 	}
 
+	/**
+	 * Descripcion: Refresca el panel de pokemones de la vista. <br>
+	 * <b>Pre:</b> Se debe tener un elemento no nulo seleccionado en la lista de
+	 * entrenadores.
+	 */
 	private void refrescarListaPokemones()
 	{
 		this.ventana.getTextoVitalidad().setText("");
@@ -261,7 +287,10 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 		while (itPokemones.hasNext())
 			modeloListaPokemones.addElement(itPokemones.next());
 	}
-	
+
+	/**
+	 * Descripcion: Guarda el estado actual del torneo en el archivo Torneo.bin.<br>
+	 */
 	private void persitirTorneo()
 	{
 		try
@@ -269,13 +298,13 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 			persistencia.abrirOutput("Torneo.bin");
 			persistencia.escribir(Torneo.getInstance());
 			persistencia.cerrarOutput();
-			this.ventana.getTextoSalidaGeneral().setText(
-					this.ventana.getTextoSalidaGeneral().getText() + "Se persistió el estado del torneo.\n");
+			this.ventana.getTextoSalidaGeneral()
+					.setText(this.ventana.getTextoSalidaGeneral().getText() + "Se persistió el estado del torneo.\n");
 		}
 		catch (IOException e)
 		{
-			this.ventana.getTextoSalidaGeneral()
-					.setText(this.ventana.getTextoSalidaGeneral().getText() + "No se puede persistir. Exception: " + e.getMessage() + "\n");
+			this.ventana.getTextoSalidaGeneral().setText(this.ventana.getTextoSalidaGeneral().getText()
+					+ "No se puede persistir. Exception: " + e.getMessage() + "\n");
 		}
 	}
 }
