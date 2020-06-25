@@ -10,17 +10,15 @@ public class Electrico extends Pokemon
 	}
 
 	/**
-	 * Descripcion: Golpe final de los pokemon de tipo Electrico. Tiene una probabilidad de dar un critico dada por el atributo probCritico.<br>
+	 * Descripcion: Golpe final de los pokemon de tipo Electrico. Tiene una
+	 * probabilidad de dar un critico dada por el atributo probCritico.<br>
 	 */
 	@Override
 	public void golpeFinal(Pokemon otro)
 	{
 		double critico = Math.random();
 		if (critico < probCritico)
-		{
 			otro.recibeDano(this.fuerza * 2);
-			//System.out.println(this.getNombre() + " realizó un ataque crítico.");
-		}
 		else
 			otro.recibeDano(this.fuerza);
 	}
@@ -55,7 +53,6 @@ public class Electrico extends Pokemon
 	@Override
 	public void recibeTormenta()
 	{
-		//System.out.println("El hechizo Tormenta no afecta a los Pokemon de tipo Eléctrico.");
 	}
 
 	@Override
@@ -67,7 +64,7 @@ public class Electrico extends Pokemon
 		}
 		catch (CloneNotSupportedException e)
 		{
-			//Nunca se ejecuta ya que el Pokemon siempre es clonable
+			// Nunca se ejecuta ya que el Pokemon siempre es clonable
 			return null;
 		}
 	}
@@ -77,7 +74,7 @@ public class Electrico extends Pokemon
 	{
 		this.vitalidad = 600;
 	}
-	
+
 	@Override
 	public String toString()
 	{

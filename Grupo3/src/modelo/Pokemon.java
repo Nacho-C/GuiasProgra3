@@ -3,11 +3,13 @@ package modelo;
 import java.io.Serializable;
 
 /**
- * @author Grupo 3.
- * <br>
- * Clase Pokemon.
- * <br>
- * Descripcion: Clase abstracta que implementa las interfaces IClasificable y Cloneable. De esta clase se extienden los diferentes tipos de Pokemon. Se encarga de gestionar los atributos, de la estructura del ataque y de la implementacion del golpe inicial.<br>
+ * @author Grupo 3. <br>
+ *         Clase Pokemon. <br>
+ *         Descripcion: Clase abstracta que implementa las interfaces
+ *         IClasificable, IHechizable, Comparable y Serializable. De esta clase
+ *         se extienden los diferentes tipos de Pokemon. Se encarga de gestionar
+ *         los atributos, de la estructura del ataque y de la implementacion del
+ *         golpe inicial.<br>
  */
 public abstract class Pokemon implements IClasificable, Cloneable, IHechizable, Serializable, Comparable<Pokemon>
 {
@@ -43,38 +45,37 @@ public abstract class Pokemon implements IClasificable, Cloneable, IHechizable, 
 	{
 		return this.nombre;
 	}
-	
+
 	public void addXP(long XP)
 	{
 		this.puntosXP += XP;
 	}
-	
+
 	public int getCategoria()
 	{
 		return this.puntosXP;
 	}
 
 	/**
-	 * Descripcion: Realiza el ataque de 3 pasos genericos, los cuales implementa cada subclase.
-	 * <br>
+	 * Descripcion: Realiza el ataque de 3 pasos genericos, los cuales implementa
+	 * cada subclase. <br>
 	 * <b>Pre:</b> Recibe una variable de clase Pokemon o de sus subclases, no nula.
 	 * <br>
-	 * <b>Post:</b> Este pokemon ataca al recibido por parametro.
-	 * <br>
+	 * <b>Post:</b> Este pokemon ataca al recibido por parametro. <br>
+	 * 
 	 * @param otro Pokemon al cual se le va a realizar el ataque
 	 */
 	public void ataque(Pokemon otro)
 	{
 		this.golpeInicial(otro);
-		//System.out.println(this.nombre + " realiza un golpe inicial.");
 		this.recarga();
 		this.golpeFinal(otro);
-		//System.out.println(this.nombre + " realiza un golpe final.");
 	}
-	
+
 	/**
-	 * Descripcion: El Pokemon realiza el golpe inicial, que es generico para todos los tipos.
-	 * <br>
+	 * Descripcion: El Pokemon realiza el golpe inicial, que es generico para todos
+	 * los tipos. <br>
+	 * 
 	 * @param otro Pokemon que recibira el danio.
 	 */
 	public void golpeInicial(Pokemon otro)
@@ -82,48 +83,54 @@ public abstract class Pokemon implements IClasificable, Cloneable, IHechizable, 
 		otro.recibeDano(this.fuerza);
 		this.fuerza /= 2;
 	}
-	
+
 	/**
-	 * Descripcion: Metodo generico que representa a los Pokemones que no recargan. Los que si lo hacen, sobreescriben este metodo en las subclases.<br>
+	 * Descripcion: Metodo generico que representa a los Pokemones que no recargan.
+	 * Los que si lo hacen, sobreescriben este metodo en las subclases.<br>
 	 */
 	public void recarga()
 	{
-		//System.out.println(this.nombre + " no recarga.");
 	}
-	
+
 	/**
-	 * Descripcion: Pokemon realiza el golpe final, donde cada subclase implementa su forma de hacerlo.
-	 * <br>
+	 * Descripcion: Pokemon realiza el golpe final, donde cada subclase implementa
+	 * su forma de hacerlo. <br>
+	 * 
 	 * @param otro Pokemon que recibira el golpe final.<br>
 	 */
 	public abstract void golpeFinal(Pokemon otro);
-	
+
 	/**
-	 * Descripcion: Pokemon recibe danio. Cada subclase implementa la forma de tratar ese danio
-	 * <br>
-	 * @param dano Valor que recibe el Pokemon como danio, de golpe inicial o golpe final.
+	 * Descripcion: Pokemon recibe danio. Cada subclase implementa la forma de
+	 * tratar ese danio <br>
+	 * 
+	 * @param dano Valor que recibe el Pokemon como danio, de golpe inicial o golpe
+	 *             final.
 	 */
 
 	public abstract void recibeDano(double dano);
-	
+
 	/**
 	 * Descripcion: Metodo que cura al Pokemon ganador de la pelea.<br>
 	 */
 	public abstract void curar();
-	
+
 	/**
-	 * Descripcion: Sobreescritura del metodo clone() de la clase Object para hacerlo publico
-	 * <br>
-	 * <b>Post:</b> Se clonara el Pokemon solicitado.
-	 * <br>
-	 * @throws CloneNotSupportedException Si se solicita clonar un Pokemon que no es clonable (tipo Aire o Tierra), se lanza una excepcion.
+	 * Descripcion: Sobreescritura del metodo clone() de la clase Object para
+	 * hacerlo publico <br>
+	 * <b>Post:</b> Se clonara el Pokemon solicitado. <br>
 	 */
 	@Override
 	public Object clone() throws CloneNotSupportedException
 	{
-			return super.clone();
+		return super.clone();
 	}
-	
+
+	/**
+	 * Descripcion: Sobreescritura del metodo compareTo() de la interfaz Comparable
+	 * para poder ordenar los entrenadores en un TreeSet de acuerdo a su categoria.
+	 * <br>
+	 */
 	@Override
 	public int compareTo(Pokemon otro)
 	{
@@ -133,9 +140,9 @@ public abstract class Pokemon implements IClasificable, Cloneable, IHechizable, 
 				retorno = 1;
 			else
 				retorno = -1;
-		return retorno;	
+		return retorno;
 	}
-	
+
 	@Override
 	public String toString()
 	{

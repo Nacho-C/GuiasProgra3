@@ -4,48 +4,32 @@ import java.io.Serializable;
 import java.util.Iterator;
 
 /**
- * @author Grupo 3.
- * <br>
- * Clase Arena.
- * <br>
- * Descripcion: Clase que simula una ronda del Torneo, la cual pelean dos Entrenadores con sus respectivos Pokemones.<br>
+ * @author Grupo 3. <br>
+ *         Clase Arena. <br>
+ *         Descripcion: Clase que se encarga de realizar un enfrentamiento entre
+ *         dos entrenadores de manera concurrente. Elige una arena libre y la
+ *         reserva. Si no hay arenas libres se elige una al azar.<br>
  */
 
 public class Enfrentamiento extends Thread implements Serializable
 {
-	/**
-	 * entrenador1 entrenador2 Entrenadores que presentaran un Pokemon en la arena.
-	 * <br>
-	 * pokemon1 pokemon2 Pokemones que se enfrentaran en la arena.
-	 * <br>
-	 * pokemonGanador Pokemon que resulto victorioso.
-	 * <br>
-	 * pokemonPerdedor Pokemon que resulto derrotado.
-	 * <br>
-	 * ganador Entrenador que gano con su respectivo pokemonGanador.
-	 * <br>
-	 * perdedor Entrenador que perdio con su respectivo pokemonPerdedor.<br>
-	 */
 	private Entrenador entrenador1, entrenador2;
 
+	/**
+	 * Descripción: Crea un nuevo enfrentamiento con los entrenadores pasados por
+	 * parametro. <br>
+	 * <b>Pre:</b> Ninguno de los entrenadores pasados por parametro puede ser null.
+	 * <br>
+	 */
 	public Enfrentamiento(Entrenador entrenador1, Entrenador entrenador2)
 	{
 		this.entrenador1 = entrenador1;
 		this.entrenador2 = entrenador2;
 	}
-	
+
 	@Override
 	public void run()
 	{
-		long random = (long) (Math.random() * 5000);
-		try
-		{
-			Thread.sleep(random);
-		}
-		catch (InterruptedException e)
-		{
-			e.printStackTrace();
-		}
 		Arena arena = null;
 		Iterator<Arena> it = Torneo.getInstance().getItArenas();
 		arena = it.next();
@@ -60,10 +44,4 @@ public class Enfrentamiento extends Thread implements Serializable
 		}
 		arena.iniciar(this.entrenador1, this.entrenador2);
 	}
-	
-	/*@Override
-	public String toString()
-	{
-		return "Ganador: " + this.ganador.getNombre() + " con su " + this.pokemonGanador.getNombre() + "\nPerdedor: " + this.perdedor.getNombre() + " con su " + this.pokemonPerdedor.getNombre();
-	}*/
 }

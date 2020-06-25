@@ -7,7 +7,7 @@ import java.io.Serializable;
  * <br>
  * Clase NotieneCartasException
  * <br>
- * Descripcion: Excepcion que se lanza cuando un Entrenador quiere lanzar un hechizo y no tiene cartas.<br>
+ * Descripcion: Excepcion que se lanza cuando un Entrenador quiere usar un hechizo y no tiene cartas.<br>
  */
 
 public class NoTieneCartasException extends Exception

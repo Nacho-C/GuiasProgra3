@@ -25,8 +25,6 @@ public class Aire extends Pokemon
 		double fallar = Math.random();
 		if (fallar > probFallar)
 			otro.recibeDano(this.fuerza);
-		//else
-			//System.out.println(this.getNombre() + " falló.");
 	}
 
 	@Override
@@ -41,8 +39,6 @@ public class Aire extends Pokemon
 				this.vitalidad -= dano - this.escudo;
 				this.escudo = 0;
 			}
-		//else
-			//System.out.println(this.getNombre() + " esquivó el ataque.");
 	}
 
 	@Override
@@ -54,7 +50,6 @@ public class Aire extends Pokemon
 	@Override
 	public void recibeViento()
 	{
-		//System.out.println("El hechizo Viento no afecta a los Pokemon de tipo Aire.");
 	}
 
 	@Override

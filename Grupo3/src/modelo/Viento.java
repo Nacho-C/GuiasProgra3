@@ -4,7 +4,7 @@ package modelo;
  * <br>
  * Clase Viento.
  * <br>
- * Descripcion: Clase que implementa las Interfaces ICartaHechizo y Cloneable, y que es utilizada por un Entrenador para debilitar al Pokemon enemigo.
+ * Descripcion: Clase que se extiende de la clase CartaHechizo y la interfaz Cloneable, y que es utilizada por un Entrenador para debilitar al Pokemon enemigo.
  */
 
 public class Viento extends CartaHechizo implements Cloneable

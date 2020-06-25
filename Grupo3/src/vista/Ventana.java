@@ -547,13 +547,13 @@ public class Ventana extends JFrame implements KeyListener, ListSelectionListene
 		if (this.etapa == -1)
 		{
 			this.labelEtapa.setText("Última etapa - Finalización");
-			this.textoSalidaGeneral.setText("Comienza la etapa de Finalización.\n");
+			this.textoSalidaGeneral.setText(this.textoSalidaGeneral.getText() + "Comienza la etapa de Finalización.\n");
 			layout.show(this.switchEtapa, "ETAPAFINAL");
 		}
 		if (this.etapa == 1)
 		{
 			this.labelEtapa.setText("Etapa: " + this.etapa + " - Alta de Entrenadores");
-			this.textoSalidaGeneral.setText("Comienza la etapa de Alta de Entrenadores.\n");
+			this.textoSalidaGeneral.setText(this.textoSalidaGeneral.getText() + "Comienza la etapa de Alta de Entrenadores.\n");
 			layout.show(this.switchEtapa, "ETAPA1");
 		}
 		else
@@ -561,14 +561,14 @@ public class Ventana extends JFrame implements KeyListener, ListSelectionListene
 			{
 				this.botonSigEtapa.setEnabled(true);
 				this.labelEtapa.setText("Etapa: " + this.etapa + " - Alta de Pokemones");
-				this.textoSalidaGeneral.setText("Comienza la etapa de Alta de Pokemones.\n");
+				this.textoSalidaGeneral.setText(this.textoSalidaGeneral.getText() + "Comienza la etapa de Alta de Pokemones.\n");
 				layout.show(this.switchEtapa, "ETAPA2");
 			}
 			else
 				if (this.etapa >= 3)
 				{
 					this.labelEtapa.setText("Etapa: " + this.etapa + " - Batalla");
-					this.textoSalidaGeneral.setText("Comienza la etapa de batalla  " + (this.etapa - 2) + ".\n");
+					this.textoSalidaGeneral.setText(this.textoSalidaGeneral.getText() + "Comienza la etapa de batalla  " + (this.etapa - 2) + ".\n");
 					layout.show(this.switchEtapa, "ETAPABATALLA");
 					this.textoArena1.setText("");
 					this.textoArena2.setText("");

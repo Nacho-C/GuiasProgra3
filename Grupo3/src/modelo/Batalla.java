@@ -1,5 +1,12 @@
 package modelo;
 
+/**
+ * @author Grupo 3.
+ * <br>
+ * Clase Batalla.
+ * <br>
+ * Descripcion: Clase que implementa la interfaz IState para el uso del patron State. Se encarga de manejar el uso de cartas y el ciclo ataque-contraataque de una batalla.<br>
+ */
 public class Batalla implements IState
 {
 	private Arena arena;

@@ -47,7 +47,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 		{
 			this.ventana.getTextoSalidaGeneral()
 					.setText(this.ventana.getTextoSalidaGeneral().getText()
-							+ "No se encontró el archivo Torneo.bin.\nSe necesitan " + Torneo.numeroEntrenadores
+							+ "No se encontró el archivo Torneo.bin. \nSe necesitan " + Torneo.numeroEntrenadores
 							+ " entrenadores para poder iniciar.\n");
 		}
 		else
@@ -61,7 +61,8 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 				modeloListaClasificaciones.addAll(torneo.getClasificaciones());
 				this.ventana.getTextoReporte().setText(torneo.getEnfrentamientosTotal());
 				this.ventana.getBotonSigEtapa().setVisible(false);
-				this.ventana.getTextoSalidaGeneral().setText(this.ventana.getTextoSalidaGeneral().getText() + this.torneo.getItEntrenadores().next().getNombre() + " gana el torneo.\n");
+				this.ventana.getTextoSalidaGeneral().setText(this.ventana.getTextoSalidaGeneral().getText()
+						+ this.torneo.getItEntrenadores().next().getNombre() + " gana el torneo.\n");
 			}
 			else
 			{
@@ -78,6 +79,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 	{
 		JButton boton = (JButton) arg0.getSource();
 		String comando = arg0.getActionCommand();
+		
 		if (comando.equalsIgnoreCase("AGREGARENTRENADOR"))
 		{
 			Entrenador entrenador = new Entrenador(this.ventana.getTextoNombreEntrenador().getText());
@@ -101,6 +103,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 			else
 				this.ventana.getBotonSigEtapa().setEnabled(false);
 		}
+		
 		if (comando.equalsIgnoreCase("ELIMINARENTRENADOR"))
 		{
 			Entrenador entrenador = (Entrenador) this.ventana.getListaEntrenadoresVivos().getSelectedValue();
@@ -113,6 +116,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 			else
 				this.ventana.getBotonSigEtapa().setEnabled(false);
 		}
+		
 		if (comando.equalsIgnoreCase("AGREGARPOKEMON"))
 		{
 			Pokemon pokemon = PokemonFactory.getPokemon(this.ventana.getTextoNombrePokemon().getText(),
@@ -126,6 +130,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 							+ pokemon.getNombre() + " de " + entrenador.getNombre() + ".\n");
 			boton.setEnabled(false);
 		}
+		
 		if (comando.equalsIgnoreCase("ELIMINARPOKEMON"))
 		{
 			Pokemon pokemon = (Pokemon) this.ventana.getListaPokemones().getSelectedValue();
@@ -137,6 +142,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 							+ pokemon.getNombre() + " de " + entrenador.getNombre() + ".\n");
 			boton.setEnabled(false);
 		}
+		
 		if (comando.equalsIgnoreCase("SIGUIENTEETAPA"))
 		{
 			try
@@ -150,7 +156,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 			catch (IOException e)
 			{
 				this.ventana.getTextoSalidaGeneral()
-						.setText(this.ventana.getTextoSalidaGeneral().getText() + "No se puede persistir.\n");
+						.setText(this.ventana.getTextoSalidaGeneral().getText() + "No se puede persistir. Exception: " + e.getMessage() + "\n");
 			}
 			if (this.torneo.getEtapa() != -1)
 			{
@@ -161,6 +167,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 							.setText(this.ventana.getTextoSalidaGeneral().getText() + "Se cerraron "
 									+ (this.torneo.getCantArenasAnterior() - this.torneo.getCantArenas())
 									+ " arenas ya que no son necesarias.\n");
+				this.persitirTorneo();
 				this.ventana.refrescarEtapa();
 				this.refrescarListaEntrenadores();
 				DefaultListModel modelo = (DefaultListModel) this.ventana.getListaPokemones().getModel();
@@ -171,6 +178,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 			else
 			{
 				this.ventana.setEtapa(this.torneo.getEtapa());
+				this.persitirTorneo();
 				this.refrescarListaEntrenadores();
 				this.ventana.refrescarEtapa();
 				DefaultListModel modeloListaClasificaciones = (DefaultListModel) this.ventana.getListaClasificiones()
@@ -178,7 +186,8 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 				modeloListaClasificaciones.addAll(torneo.getClasificaciones());
 				this.ventana.getTextoReporte().setText(torneo.getEnfrentamientosTotal());
 				this.ventana.getBotonSigEtapa().setVisible(false);
-				this.ventana.getTextoSalidaGeneral().setText(this.ventana.getTextoSalidaGeneral().getText() + this.torneo.getItEntrenadores().next().getNombre() + " gana el torneo.\n");
+				this.ventana.getTextoSalidaGeneral().setText(this.ventana.getTextoSalidaGeneral().getText()
+						+ this.torneo.getItEntrenadores().next().getNombre() + " gana el torneo.\n");
 			}
 		}
 	}
@@ -229,7 +238,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 		}
 	}
 
-	public void refrescarListaEntrenadores()
+	private void refrescarListaEntrenadores()
 	{
 		Iterator<Entrenador> itEntrenadores = this.torneo.getItEntrenadores();
 		DefaultListModel modeloListaEntrenadores = (DefaultListModel) this.ventana.getListaEntrenadoresVivos()
@@ -239,7 +248,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 			modeloListaEntrenadores.addElement(itEntrenadores.next());
 	}
 
-	public void refrescarListaPokemones()
+	private void refrescarListaPokemones()
 	{
 		JList listaPokemones = this.ventana.getListaPokemones();
 		DefaultListModel modeloListaPokemones = (DefaultListModel) listaPokemones.getModel();
@@ -251,5 +260,22 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 		itPokemones = entrenador.getItPokemones();
 		while (itPokemones.hasNext())
 			modeloListaPokemones.addElement(itPokemones.next());
+	}
+	
+	private void persitirTorneo()
+	{
+		try
+		{
+			persistencia.abrirOutput("Torneo.bin");
+			persistencia.escribir(Torneo.getInstance());
+			persistencia.cerrarOutput();
+			this.ventana.getTextoSalidaGeneral().setText(
+					this.ventana.getTextoSalidaGeneral().getText() + "Se persistió el estado del torneo.\n");
+		}
+		catch (IOException e)
+		{
+			this.ventana.getTextoSalidaGeneral()
+					.setText(this.ventana.getTextoSalidaGeneral().getText() + "No se puede persistir. Exception: " + e.getMessage() + "\n");
+		}
 	}
 }

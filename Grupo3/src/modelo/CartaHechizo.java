@@ -12,7 +12,7 @@ import java.io.Serializable;
 public abstract class CartaHechizo implements Serializable
 {
 	/**
-	 * Descripcion: Metodo para hechizar a un Pokemon. Este es implementado en cada una de las clases que implementan esta interfaz (Niebla, Tormenta y Viento).
+	 * Descripcion: Metodo para hechizar a un Pokemon. Este es implementado en cada una de las clases que extienden esta clase (Niebla, Tormenta y Viento).
 	 * <br>
 	 * @param pokemon Pokemon que sera hechizado.
 	 */

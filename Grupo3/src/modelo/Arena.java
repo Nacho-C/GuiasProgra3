@@ -28,32 +28,16 @@ public class Arena extends Observable implements Serializable
 
 	public synchronized void iniciar(Entrenador ent1, Entrenador ent2)
 	{
-		if (!this.disponible)
+		this.disponible = false;
+		this.entrenador1 = ent1;
+		this.entrenador2 = ent2;
+		this.carta1 = this.carta2 = this.cartaGanada = null;
+		for (int i = 0; i < 4; i++)
 		{
-			Torneo.getInstance().addEntrenador(this.entrenador1);
-			Torneo.getInstance().addEntrenador(this.entrenador2);
-		}
-		else
-		{
-			this.disponible = false;
-			this.entrenador1 = ent1;
-			this.entrenador2 = ent2;
-			this.carta1 = this.carta2 = this.cartaGanada = null;
-			for (int i = 0; i < 4; i++)
-			{
-				try
-				{
-					Thread.sleep(2500);
-				}
-				catch (InterruptedException e)
-				{
-					e.printStackTrace();
-				}
-				estadoAnterior = estado;
-				estado.correr();
-				this.setChanged();
-				this.notifyObservers(estadoAnterior);
-			}
+			estadoAnterior = estado;
+			estado.correr();
+			this.setChanged();
+			this.notifyObservers(estadoAnterior);
 		}
 		notify();
 	}
@@ -157,7 +141,7 @@ public class Arena extends Observable implements Serializable
 	{
 		this.disponible = disp;
 	}
-	
+
 	public int getNumeroArena()
 	{
 		return this.numeroArena;

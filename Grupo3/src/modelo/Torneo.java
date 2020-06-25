@@ -13,7 +13,7 @@ import Persistencia.PersistenciaBIN;
  * @author Grupo 3. <br>
  *         Clase Torneo. <br>
  *         Descripcion: Clase que emplea Patron Singleton y encargada de
- *         gestionar los Entrenadores y las rondas.
+ *         gestionar los Entrenadores y las rondas. Implementa la interfaz Serializable
  */
 public class Torneo implements Serializable
 {
@@ -66,6 +66,7 @@ public class Torneo implements Serializable
 			}
 			catch (IOException | ClassNotFoundException e)
 			{
+				System.out.println(e.getMessage());
 				Torneo.instance = new Torneo();
 				Torneo.instance.etapa = 1;
 				for (int i = 0; i < Torneo.cantArenasInicial; i++)

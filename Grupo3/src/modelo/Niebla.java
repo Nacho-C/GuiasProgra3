@@ -7,7 +7,7 @@ import java.io.Serializable;
  * <br>
  * Clase Niebla.
  * <br>
- * Descripcion: Clase que implementa las Interfaces ICartaHechizo y Cloneable, y que es utilizada por un Entrenador para debilitar al Pokemon enemigo.
+ * Descripcion: Clase que se extiende de la clase CartaHechizo y la interfaz Cloneable, y que es utilizada por un Entrenador para debilitar al Pokemon enemigo.
  */
 
 public class Niebla extends CartaHechizo implements Cloneable, Serializable

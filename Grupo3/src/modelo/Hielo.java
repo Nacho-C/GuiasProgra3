@@ -16,13 +16,11 @@ public class Hielo extends Pokemon
 		if (granRecarga)
 		{
 			this.fuerza = 400;
-			//System.out.println(this.nombre + " recargó su fuerza a 400.");
 		}
 		else
 		{
 			this.fuerza *= 1.1;
 			this.vitalidad *= 1.1;
-			//System.out.println(this.nombre + " recargó 10% de fuerza y 10% de vitalidad.");
 		}
 	}
 
@@ -58,7 +56,8 @@ public class Hielo extends Pokemon
 	@Override
 	public void recibeViento()
 	{
-		//System.out.println("El hechizo Viento no afecta a los Pokemon de tipo Hielo.");
+		// System.out.println("El hechizo Viento no afecta a los Pokemon de tipo
+		// Hielo.");
 	}
 
 	@Override
@@ -76,7 +75,7 @@ public class Hielo extends Pokemon
 		}
 		catch (CloneNotSupportedException e)
 		{
-			//Nunca se ejecuta ya que el Pokemon siempre es clonable
+			// Nunca se ejecuta ya que el Pokemon siempre es clonable
 			return null;
 		}
 	}
@@ -86,7 +85,7 @@ public class Hielo extends Pokemon
 	{
 		this.vitalidad = 500;
 	}
-	
+
 	@Override
 	public String toString()
 	{

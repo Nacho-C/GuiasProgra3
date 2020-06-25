@@ -2,6 +2,14 @@ package modelo;
 
 import java.io.Serializable;
 
+/**
+ * @author Grupo 3.
+ * <br>
+ * Clase Preliminar.
+ * <br>
+ * Descripcion: Clase que implementa la interfaz IState para el uso del patron State. Se encarga de elegir las cartas y los pokemones de cada entrenador.<br>
+ */
+
 public class Preliminar implements IState, Serializable
 {
 	private Arena arena;

@@ -4,7 +4,7 @@ public class Agua extends Pokemon
 {
 	public Agua(String nombre)
 	{
-		super(nombre,500,120,100);
+		super(nombre, 500, 120, 100);
 	}
 
 	@Override
@@ -13,7 +13,7 @@ public class Agua extends Pokemon
 		this.fuerza *= 1.1;
 		this.vitalidad *= 1.1;
 	}
-	
+
 	@Override
 	public void golpeFinal(Pokemon otro)
 	{
@@ -48,7 +48,6 @@ public class Agua extends Pokemon
 	@Override
 	public void recibeTormenta()
 	{
-		//System.out.println("El hechizo Tormenta no afecta a los Pokemon de tipo Agua.");
 	}
 
 	@Override
@@ -60,7 +59,7 @@ public class Agua extends Pokemon
 		}
 		catch (CloneNotSupportedException e)
 		{
-			//Nunca se ejecuta ya que el Pokemon siempre es clonable
+			// Nunca se ejecuta ya que el Pokemon siempre es clonable
 			return null;
 		}
 	}
@@ -70,7 +69,7 @@ public class Agua extends Pokemon
 	{
 		this.vitalidad = 500;
 	}
-	
+
 	@Override
 	public String toString()
 	{

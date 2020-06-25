@@ -8,7 +8,7 @@ import java.util.Iterator;
  * <br>
  * Clase Entrenador
  * <br>
- * Descripcion: Clase que implementa las interfaces IClasificable y Cloneable, y que contiene diferentes conjuntos de Pokemones y cartas.<br>
+ * Descripcion: Clase que implementa las interfaces IClasificable, Cloneable, Serializable y Comparable, y que contiene diferentes conjuntos de Pokemones y cartas.<br>
  */
 
 public class Entrenador implements IClasificable, Cloneable, Serializable, Comparable<Entrenador>
@@ -74,28 +74,6 @@ public class Entrenador implements IClasificable, Cloneable, Serializable, Compa
 	}
 	
 	/**
-	 * Descripcion: Metodo que itera en el ArrayList pokemones y genera un listado de estos.<br>
-	 */
-	public void mostrarPokemones()
-	{
-		int i = 0;
-		Iterator<Pokemon> itPokemones = pokemones.iterator();
-		while (itPokemones.hasNext())
-			System.out.println(i++ + "\t" + itPokemones.next().getNombre());
-	}
-	
-	/**
-	 * Descripcion: Metodo que itera en el ArrayList cartas y genera un listado de estas.<br>
-	 */
-	public void mostrarCartas()
-	{
-		int i = 0;
-		Iterator<CartaHechizo> itCartas = cartas.iterator();
-		while (itCartas.hasNext())
-			System.out.println(i++ + "\t" + itCartas.next());
-	}
-	
-	/**
 	 * Descripcion: Metodo que obtiene un Pokemon de manera aleatoria entre los disponibles del ArrayList pokemones.
 	 * <br>
 	 * <b>Pre:</b> El entrenador tiene que tener Pokemones en su ArrayList.
@@ -111,9 +89,9 @@ public class Entrenador implements IClasificable, Cloneable, Serializable, Compa
 	}
 	
 	/**
-	 * Descripcion: Metodo que obtiene una carta de manera aleatoria entre las disponibles del ArrayList cartas. 
+	 * Descripcion: Metodo que obtiene una carta de manera aleatoria entre las disponibles del ArrayList de cartas. 
 	 * <br>
-	 * <b>Post:</b> Se devuelve una carta del arrayList
+	 * <b>Post:</b> Se devuelve una carta del ArrayList
 	 * @return Interfaz ICartaHechizo.
 	 * <br>
 	 * @throws Exception Se lanzan dos tipos de excepciones, cuando ya alcanzó el limite de hechizos por torneo (LimiteHechizosException) o cuando no tiene cartas en el ArrayList cartas (NoTieneCartasException).<br>
