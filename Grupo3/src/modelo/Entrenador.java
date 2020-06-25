@@ -25,6 +25,7 @@ public class Entrenador implements IClasificable, Cloneable, Serializable, Compa
 	 * creditos Ganancia del Entrenador por cada victoria en la arena.
 	 * <br>
 	 */
+	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private ArrayList<CartaHechizo> cartas = new ArrayList<CartaHechizo>();
 	private ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();

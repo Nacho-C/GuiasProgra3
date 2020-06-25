@@ -13,6 +13,7 @@ import java.util.Iterator;
 
 public class Enfrentamiento extends Thread implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	private Entrenador entrenador1, entrenador2;
 
 	/**

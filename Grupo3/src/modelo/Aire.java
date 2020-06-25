@@ -2,6 +2,7 @@ package modelo;
 
 public class Aire extends Pokemon
 {
+	private static final long serialVersionUID = 1L;
 	private double probFallar = 0.1;
 
 	public Aire(String nombre)

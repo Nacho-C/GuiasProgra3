@@ -11,6 +11,8 @@ import java.io.Serializable;
  */
 public abstract class CartaHechizo implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Descripcion: Metodo para hechizar a un Pokemon. Este es implementado en cada una de las clases que extienden esta clase (Niebla, Tormenta y Viento).
 	 * <br>

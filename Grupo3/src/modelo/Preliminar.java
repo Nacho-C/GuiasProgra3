@@ -12,6 +12,7 @@ import java.io.Serializable;
 
 public class Preliminar implements IState, Serializable
 {
+	private static final long serialVersionUID = 1L;
 	private Arena arena;
 	private String mensaje;
 

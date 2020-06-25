@@ -12,6 +12,7 @@ import java.util.Observer;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -28,6 +29,12 @@ import modelo.Torneo;
 import modelo.Viento;
 import vista.Ventana;
 
+/**
+ * @author Grupo 3. <br>
+ *         Clase Controlador. <br>
+ *         Descripcion: Clase que emplea Patron Singleton y encargada de
+ *         gestionar los Entrenadores y las rondas. Implementa la interfaz Serializable
+ */
 public class Controlador implements ActionListener, ListSelectionListener, Observer
 {
 	IPersistencia<Serializable> persistencia = new PersistenciaBIN();
@@ -145,19 +152,6 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 		
 		if (comando.equalsIgnoreCase("SIGUIENTEETAPA"))
 		{
-			try
-			{
-				persistencia.abrirOutput("Torneo.bin");
-				persistencia.escribir(Torneo.getInstance());
-				persistencia.cerrarOutput();
-				this.ventana.getTextoSalidaGeneral().setText(
-						this.ventana.getTextoSalidaGeneral().getText() + "Se persistió el estado del torneo.\n");
-			}
-			catch (IOException e)
-			{
-				this.ventana.getTextoSalidaGeneral()
-						.setText(this.ventana.getTextoSalidaGeneral().getText() + "No se puede persistir. Exception: " + e.getMessage() + "\n");
-			}
 			if (this.torneo.getEtapa() != -1)
 			{
 				this.torneo.setEtapa(this.torneo.getEtapa() + 1);
@@ -240,6 +234,9 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 
 	private void refrescarListaEntrenadores()
 	{
+		this.ventana.getTextoVitalidad().setText("");
+		this.ventana.getTextoFuerza().setText("");
+		this.ventana.getTextoEscudo().setText("");
 		Iterator<Entrenador> itEntrenadores = this.torneo.getItEntrenadores();
 		DefaultListModel modeloListaEntrenadores = (DefaultListModel) this.ventana.getListaEntrenadoresVivos()
 				.getModel();
@@ -250,6 +247,9 @@ public class Controlador implements ActionListener, ListSelectionListener, Obser
 
 	private void refrescarListaPokemones()
 	{
+		this.ventana.getTextoVitalidad().setText("");
+		this.ventana.getTextoFuerza().setText("");
+		this.ventana.getTextoEscudo().setText("");
 		JList listaPokemones = this.ventana.getListaPokemones();
 		DefaultListModel modeloListaPokemones = (DefaultListModel) listaPokemones.getModel();
 		Entrenador entrenador = (Entrenador) this.ventana.getListaEntrenadoresVivos().getSelectedValue();

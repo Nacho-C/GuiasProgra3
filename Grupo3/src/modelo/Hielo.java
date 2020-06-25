@@ -2,6 +2,7 @@ package modelo;
 
 public class Hielo extends Pokemon
 {
+	private static final long serialVersionUID = 1L;
 	private boolean granRecarga;
 
 	public Hielo(String nombre, boolean granRecarga)

@@ -1,7 +1,5 @@
 package modelo;
 
-import java.io.Serializable;
-
 /**
  * @author Grupo 3.
  * <br>
@@ -12,6 +10,8 @@ import java.io.Serializable;
 
 public class NoTieneCartasException extends Exception
 {
+	private static final long serialVersionUID = 1L;
+
 	public NoTieneCartasException(String mensaje)
 	{
 		super(mensaje);

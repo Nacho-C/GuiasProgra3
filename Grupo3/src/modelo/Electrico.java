@@ -2,6 +2,7 @@ package modelo;
 
 public class Electrico extends Pokemon
 {
+	private static final long serialVersionUID = 1L;
 	private double probCritico = 0.25;
 
 	public Electrico(String nombre)

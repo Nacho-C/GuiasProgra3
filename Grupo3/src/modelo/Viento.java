@@ -9,6 +9,8 @@ package modelo;
 
 public class Viento extends CartaHechizo implements Cloneable
 {
+	private static final long serialVersionUID = 1L;
+
 	public void hechizar(Pokemon pokemon)
 	{
 		pokemon.recibeViento();

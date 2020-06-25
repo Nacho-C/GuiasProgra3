@@ -17,6 +17,8 @@ import Persistencia.PersistenciaBIN;
  */
 public class Torneo implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * numeroEntrenadores Numero de Entrenadores que representa la cantidad de
 	 * participantes del Torneo. <br>
@@ -29,7 +31,7 @@ public class Torneo implements Serializable
 	 */
 	private static Torneo instance = null;
 
-	public final static int numeroEntrenadores = 16, maxHechizos = 1, cantArenasInicial = 4;
+	public final static int numeroEntrenadores = 16, maxHechizos = 2, cantArenasInicial = 4;
 
 	private ArrayList<Arena> arenas = new ArrayList<Arena>();
 
@@ -66,7 +68,6 @@ public class Torneo implements Serializable
 			}
 			catch (IOException | ClassNotFoundException e)
 			{
-				System.out.println(e.getMessage());
 				Torneo.instance = new Torneo();
 				Torneo.instance.etapa = 1;
 				for (int i = 0; i < Torneo.cantArenasInicial; i++)
@@ -158,20 +159,6 @@ public class Torneo implements Serializable
 			if (this.getCantEntrenadores() == 1)
 				this.etapa = -1;
 		}
-	}
-
-	/**
-	 * Descripcion: Metodo que realiza un listado final de todas las arenas al
-	 * finalizar el Torneo.
-	 */
-
-	public void reporteGeneral()
-	{
-		int i = 1;
-		Iterator<Enfrentamiento> itArenas = enfrentamientos.iterator();
-		System.out.println("\n*****\nReporte general:\n");
-		while (itArenas.hasNext())
-			System.out.println("Ronda " + i++ + ":\n" + itArenas.next() + "\n\n*****\n");
 	}
 
 	public TreeSet<Entrenador> getClasificaciones()

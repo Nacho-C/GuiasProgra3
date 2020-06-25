@@ -5,6 +5,7 @@ import java.util.Observable;
 
 public class Arena extends Observable implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	private IState estado, estadoAnterior;
 	private boolean disponible;
 	private Entrenador entrenador1, entrenador2, ganador, perdedor;
@@ -38,6 +39,7 @@ public class Arena extends Observable implements Serializable
 			estado.correr();
 			this.setChanged();
 			this.notifyObservers(estadoAnterior);
+			estadoAnterior = null;
 		}
 		notify();
 	}

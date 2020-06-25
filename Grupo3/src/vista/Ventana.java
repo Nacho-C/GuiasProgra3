@@ -21,6 +21,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
@@ -101,8 +102,15 @@ public class Ventana extends JFrame implements KeyListener, ListSelectionListene
 	private JLabel labelClasificaciones;
 	private JLabel labelReporte;
 	private JLabel labelEntrenadoresVivos;
-	private JLabel lblNewLabel_2;
+	private JLabel labelPokemones;
 	private JTextArea textoReporte;
+	private JPanel panelDetallePokemones;
+	private JLabel labelVitalidad;
+	private JLabel labelFuerza;
+	private JLabel labelEscudo;
+	private JTextPane textoVitalidad;
+	private JTextPane textoFuerza;
+	private JTextPane textoEscudo;
 
 	public Ventana(int etapa)
 	{
@@ -175,10 +183,44 @@ public class Ventana extends JFrame implements KeyListener, ListSelectionListene
 		this.listaPokemones.setModel(this.modeloListaPokemones);
 		this.scrollPokemones.setViewportView(this.listaPokemones);
 
-		this.lblNewLabel_2 = new JLabel("Pokemones");
-		this.lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 15));
-		this.lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		this.scrollPokemones.setColumnHeaderView(this.lblNewLabel_2);
+		this.labelPokemones = new JLabel("Pokemones");
+		this.labelPokemones.setFont(new Font("Tahoma", Font.BOLD, 15));
+		this.labelPokemones.setHorizontalAlignment(SwingConstants.CENTER);
+		this.scrollPokemones.setColumnHeaderView(this.labelPokemones);
+		
+		this.panelDetallePokemones = new JPanel();
+		this.panelPokemones.add(this.panelDetallePokemones, BorderLayout.SOUTH);
+		this.panelDetallePokemones.setLayout(new GridLayout(3, 2, 0, 3));
+		
+		this.labelVitalidad = new JLabel("Vitalidad: ");
+		this.labelVitalidad.setHorizontalAlignment(SwingConstants.TRAILING);
+		this.labelVitalidad.setFont(new Font("Tahoma", Font.BOLD, 15));
+		this.panelDetallePokemones.add(this.labelVitalidad);
+		
+		this.textoVitalidad = new JTextPane();
+		this.textoVitalidad.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		this.textoVitalidad.setEditable(false);
+		this.panelDetallePokemones.add(this.textoVitalidad);
+		
+		this.labelFuerza = new JLabel("Fuerza: ");
+		this.labelFuerza.setHorizontalAlignment(SwingConstants.TRAILING);
+		this.labelFuerza.setFont(new Font("Tahoma", Font.BOLD, 15));
+		this.panelDetallePokemones.add(this.labelFuerza);
+		
+		this.textoFuerza = new JTextPane();
+		this.textoFuerza.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		this.textoFuerza.setEditable(false);
+		this.panelDetallePokemones.add(this.textoFuerza);
+		
+		this.labelEscudo = new JLabel("Escudo: ");
+		this.labelEscudo.setHorizontalAlignment(SwingConstants.TRAILING);
+		this.labelEscudo.setFont(new Font("Tahoma", Font.BOLD, 15));
+		this.panelDetallePokemones.add(this.labelEscudo);
+		
+		this.textoEscudo = new JTextPane();
+		this.textoEscudo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		this.textoEscudo.setEditable(false);
+		this.panelDetallePokemones.add(this.textoEscudo);
 
 		this.panelEtapa = new JPanel();
 		this.panelEtapa.setBounds(5, 15, 871, 451);
@@ -486,8 +528,6 @@ public class Ventana extends JFrame implements KeyListener, ListSelectionListene
 	{
 		JList lista = (JList) arg0.getSource();
 		if (lista == this.listaEntrenadoresVivos)
-		{
-
 			if (this.etapa == 1)
 				if (lista.getSelectedValue() != null)
 					this.botonBajaEntrenador.setEnabled(true);
@@ -512,12 +552,22 @@ public class Ventana extends JFrame implements KeyListener, ListSelectionListene
 						this.botonAltaPokemon.setEnabled(false);
 				}
 			}
-		}
 		else
 			if (lista.getSelectedValue() != null)
+			{
+				Pokemon pokemon = (Pokemon) lista.getSelectedValue();
 				this.botonBajaPokemon.setEnabled(true);
+				this.textoVitalidad.setText("" + pokemon.getVitalidad());
+				this.textoFuerza.setText("" + pokemon.getFuerza());
+				this.textoEscudo.setText("" + pokemon.getEscudo());
+			}
 			else
+			{
 				this.botonBajaPokemon.setEnabled(false);
+				this.textoVitalidad.setText("");
+				this.textoFuerza.setText("");
+				this.textoEscudo.setText("");
+			}
 	}
 
 	public JList getListaPokemones()
@@ -615,5 +665,20 @@ public class Ventana extends JFrame implements KeyListener, ListSelectionListene
 	public JTextArea getTextoReporte()
 	{
 		return this.textoReporte;
+	}
+	
+	public JTextPane getTextoVitalidad()
+	{
+		return this.textoVitalidad;
+	}
+	
+	public JTextPane getTextoFuerza()
+	{
+		return this.textoFuerza;
+	}
+	
+	public JTextPane getTextoEscudo()
+	{
+		return this.textoEscudo;
 	}
 }

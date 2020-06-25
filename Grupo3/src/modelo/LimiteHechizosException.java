@@ -12,6 +12,8 @@ import java.io.Serializable;
 
 public class LimiteHechizosException extends Exception
 {
+	private static final long serialVersionUID = 1L;
+
 	public LimiteHechizosException(String mensaje)
 	{
 		super(mensaje);

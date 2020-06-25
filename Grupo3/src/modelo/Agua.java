@@ -2,6 +2,8 @@ package modelo;
 
 public class Agua extends Pokemon
 {
+	private static final long serialVersionUID = 1L;
+
 	public Agua(String nombre)
 	{
 		super(nombre, 500, 120, 100);

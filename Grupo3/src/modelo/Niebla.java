@@ -12,6 +12,8 @@ import java.io.Serializable;
 
 public class Niebla extends CartaHechizo implements Cloneable, Serializable
 {
+	private static final long serialVersionUID = 1L;
+
 	public void hechizar(Pokemon pokemon)
 	{
 		pokemon.recibeNiebla();

@@ -1,17 +1,14 @@
 package modelo;
 
-import java.io.Serializable;
-
 /**
  * @author Grupo 3. <br>
  *         Clase Limpieza. <br>
  *         Descripcion: Clase que implementa la interfaz IState para el uso del
- *         patron State, ademas de la interfaz Serializable para los casos en
- *         los que se persiste con una arena en este estado. Se encarga de matar
- *         o curar al Pokemon del ganador de la batalla, ademas de reagregar
- *         este ultimo al conjunto de entrenadores del torneo.<br>
+ *         patron State. Se encarga de matar o curar al Pokemon del ganador de
+ *         la batalla, ademas de reagregar este ultimo al conjunto de
+ *         entrenadores del torneo.<br>
  */
-public class Limpieza implements IState, Serializable
+public class Limpieza implements IState
 {
 	private Arena arena;
 	private String mensaje;

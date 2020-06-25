@@ -13,6 +13,7 @@ import java.io.Serializable;
  */
 public abstract class Pokemon implements IClasificable, Cloneable, IHechizable, Serializable, Comparable<Pokemon>
 {
+	private static final long serialVersionUID = 1L;
 	protected String nombre;
 	private int puntosXP;
 	protected double escudo, vitalidad, fuerza;

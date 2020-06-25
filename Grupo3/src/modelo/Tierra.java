@@ -2,6 +2,8 @@ package modelo;
 
 public class Tierra extends Pokemon
 {
+	private static final long serialVersionUID = 1L;
+
 	public Tierra(String nombre)
 	{
 		super(nombre,700,20,150);
